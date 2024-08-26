@@ -1,0 +1,19 @@
+.no-cursor{
+    caret-color: transparent;
+}
+.custom-width {
+    width: 100vw;}
+.boxShadow{
+    box-shadow: 20px 10px rgba(187, 234, 245, 0.13);
+}
+.boxShadowHeader{
+    box-shadow: 1px 5px rgba(26, 61, 59, 0.3);
+}
+@media  (max-width: 800px) {
+    .boxShadow{
+        box-shadow: 10px 10px rgba(165, 231, 243, 0.19), -10px 10px rgba(165, 231, 243, 0.19);
+    }}
+
+
+
+
