@@ -7,6 +7,25 @@ import {
 } from "@remix-run/react";
 import "./tailwind.css";
 
+
+import {
+    isRouteErrorResponse,
+    useRouteError,
+} from "@remix-run/react";
+import {LinksFunction, MetaFunction} from "@remix-run/node";
+
+export const links: LinksFunction = () => {
+    return [{ rel: "stylesheet", href: "/app/index.css" }];
+};
+export const meta: MetaFunction = () => {
+    return [
+        { title: "New Remix App" },
+        { name: "description", content: "Welcome to Remix!" },
+    ];
+};
+
+
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -15,6 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+          <title> remix</title>
       </head>
       <body>
         {children}
@@ -23,6 +43,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   );
+
+}
+
+export function ErrorBoundary() {
+    const error = useRouteError();
+
+    if (isRouteErrorResponse(error)) {
+        return (
+            <div className="bg-blue-200 p-8 rounded-lg shadow-lg   text-center">
+                <h1>
+                    {error.status} {error.statusText}
+                </h1>
+                <p>{error.data}</p>
+            </div>
+        );
+    } else if (error instanceof Error) {
+        return (
+            <div className="bg-blue-200 p-8 rounded-lg shadow-lg   text-center">
+                <h1>Error</h1>
+                <p>{error.message}</p>
+                <p>The stack trace is:</p>
+            </div>
+        );
+    } else {
+        return <h1>Unknown Error</h1>;
+    }
 }
 
 export default function App() {

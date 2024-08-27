@@ -13,6 +13,13 @@
     .boxShadow{
         box-shadow: 10px 10px rgba(165, 231, 243, 0.19), -10px 10px rgba(165, 231, 243, 0.19);
     }}
+.resizee{
+    resize:both;
+    overflow: auto;
+    cursor: move;
+    position: absolute;
+}
+
 
 
 
