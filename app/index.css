@@ -1,24 +1,43 @@
 .no-cursor{
     caret-color: transparent;
 }
+h1{
+    caret-color: transparent;
+}
+
+button{
+    caret-color: transparent;
+}
+p{
+    caret-color: transparent;
+}
+img{
+    caret-color: transparent;
+}
 .custom-width {
     width: 100vw;}
-.boxShadow{
+.box-shadow{
     box-shadow: 20px 10px rgba(187, 234, 245, 0.13);
 }
-.boxShadowHeader{
+.box-shadow-header{
     box-shadow: 1px 5px rgba(26, 61, 59, 0.3);
 }
 @media  (max-width: 800px) {
-    .boxShadow{
+    .box-shadow{
         box-shadow: 10px 10px rgba(165, 231, 243, 0.19), -10px 10px rgba(165, 231, 243, 0.19);
     }}
-.resizee{
-    resize:both;
-    overflow: auto;
-    cursor: move;
-    position: absolute;
+
+
+body{
+    background: #67c4c1;
+    /*background: #020b21;*/
 }
+.authForm{
+    background: #2e3d4b;
+    height: 100vh;
+}
+
+
 
 
 

@@ -29,3 +29,19 @@ export async function getBlogs() {
         throw error;
     }
 }
+
+
+export async function getBlogsById(blogId) {
+    const id = parseInt(blogId);
+
+    try {
+        const blog = await prisma.blog.findUnique({
+            where: { id: id },
+        });
+        return blog;
+    } catch (error) {
+        console.log(error);
+        throw error;
+
+    }
+}

@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import '../index.css'
-import Header from "~/components/landingPage/Header/Header";
+import Bio from "~/components/landingPage/Bio/Bio";
+import AboutMe from "~/components/landingPage/AboutMe/AboutMe";
 
 
 export const meta: MetaFunction = () => {
@@ -14,10 +15,13 @@ export default function Index() {
 
 
     return (
-      <>
-        <div className="w-full fixed boxShadowHeader top-0 bg-gray-900 z-10">
-          <Header/>
-        </div>
-      </>
+        <main className="bg-gray-900 h-[2000px]  ">
+            <div className="flex flex-col  items-center justify-center " >
+                <div className="mt-[100px]" >
+                    <Bio/>
+                </div>
+                <AboutMe/>
+            </div>
+        </main>
   );
 }

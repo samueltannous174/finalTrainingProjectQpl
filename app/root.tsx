@@ -13,6 +13,7 @@ import {
     useRouteError,
 } from "@remix-run/react";
 import {LinksFunction, MetaFunction} from "@remix-run/node";
+import Header from "~/components/Header/Header";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
@@ -35,8 +36,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
           <title> remix</title>
+
       </head>
       <body>
+      <div className="w-full fixed boxShadowHeader top-0 bg-gray-900 box-shadow-header">
+          <Header/>
+      </div>
         {children}
         <ScrollRestoration />
         <Scripts />

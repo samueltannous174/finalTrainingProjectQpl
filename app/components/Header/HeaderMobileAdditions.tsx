@@ -1,5 +1,5 @@
 
-export default function HeaderMobile() {
+export default function HeaderMobileAdditions() {
 
     return (
         <>
