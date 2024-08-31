@@ -7,7 +7,6 @@ import { FaLinkedin } from "react-icons/fa";
 import { MdWavingHand } from "react-icons/md";
 
 
-
 export default function BioPartOne() {
     const name =" Hello, I'm Samuel\n"
     const desc =" I'm a full stack developer (React.js & Node.js) with a focus on creating (and occasionally designing) exceptional digital experiences that are fast, accessible, visually appealing, and responsive. Even though I have been creating web applications for over 7 years, I still love it as if it was something new.\n"

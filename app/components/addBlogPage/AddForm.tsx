@@ -32,13 +32,13 @@ function AddForm({ blogData, setBlogData, handleFontChange, fontType }: AddFormP
         handleFontChange(newFontType);
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setBlogData(prevData => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            const { name, value } = e.target;
+            setBlogData(prevData => ({
+                ...prevData,
+                [name]: value,
+            }));
+        };
 
     const validation = useActionData<ValidationErrors>();
     const navigation = useNavigation();

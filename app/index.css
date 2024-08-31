@@ -2,7 +2,13 @@
     caret-color: transparent;
 }
 h1{
-    caret-color: transparent;
+        caret-color: transparent;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #fcf7f7;
+        text-align: center;
+    align-self: center;
+
 }
 
 button{
@@ -29,17 +35,96 @@ img{
 
 
 body{
-    background: #67c4c1;
+    background: #4c97ad;
     /*background: #020b21;*/
+
 }
-.authForm{
+.auth-form{
     background: #2e3d4b;
     height: 100vh;
 }
+.ql-toolbar.ql-snow{
+    background: lightblue;
+}
+
+.ql-editor{
+    height: 500px;
+}
+.ql-container.ql-snow{
+    height: 500px;
+}
+ul {
+    list-style-type: disc;
+    margin: 1em 0;
+    padding-left: 40px;
+}
+
+ol {
+    list-style-type: decimal;
+    margin: 1em 0;
+    padding-left: 40px;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+    font-weight: bold;
+}
+p {
+    font-size: 13px;
+    font-family: Helvetica, Arial, sans-serif;
+}
 
 
 
+@media  (max-width: 767px) {
+    .ql-editor-width {
+        max-width: 300px;
+    }
+    .ql-editor {
+        height: 400px;
+    }
+    .ql-container{
+        height: 400px;
+    }
+  }
 
-
+.ql-size-large{
+    font-size: 23px;
+    align-self: center;
+}
 
 

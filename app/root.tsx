@@ -39,7 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       </head>
       <body>
-      <div className="w-full fixed boxShadowHeader top-0 bg-gray-900 box-shadow-header">
+      <div className="w-full fixed boxShadowHeader top-0 bg-gray-900 box-shadow-header z-10">
           <Header/>
       </div>
         {children}
