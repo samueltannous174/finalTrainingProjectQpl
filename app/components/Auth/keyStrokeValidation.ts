@@ -8,6 +8,7 @@ export function useAuthForm() {
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
+        setEmailError('');
     };
 
     const handleEmailBlur = () => {
@@ -21,6 +22,7 @@ export function useAuthForm() {
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
+        setPasswordError('');
     };
 
     const handlePasswordBlur = () => {

@@ -37,7 +37,7 @@ function AuthForm() {
                 {authMode === 'login' ? 'Sign in to your account' : 'Create a new account'}
             </h2>
 
-            <Form method="post" className="space-y-4" id="auth-form">
+            <Form method="post" className="space-y-2" id="auth-form">
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-white">
                         Email Address

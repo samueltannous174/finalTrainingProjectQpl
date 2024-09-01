@@ -10,20 +10,11 @@ function SignUpAdditions() {
     } = useAuthForm();
 
     return (
+
         <div className="flex flex-col">
-            <label htmlFor="password" className="block text-sm font-medium text-white mt-4">
-                Username/Author:
-            </label>
-            <input
-                id="author"
-                required
-                className={`mt-1 block w-full px-3 py-2 border ${
-                    passwordError ? 'border-red-500' : 'border-gray-300'
-                } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-            />
 
             <label htmlFor="password" className="block text-sm font-medium text-white mt-4">
-               confirm Password
+                confirm Password
             </label>
             <input
                 type="password"
@@ -38,7 +29,19 @@ function SignUpAdditions() {
                 } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
             />
             <label htmlFor="password" className="block text-sm font-medium text-white mt-4">
-                User Image
+                Username/Author:
+            </label>
+            <input
+                id="author"
+                required
+                className={`mt-1 block w-full px-3 py-1 border ${
+                    passwordError ? 'border-red-500' : 'border-gray-300'
+                } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
+            />
+
+
+            <label htmlFor="password" className="block text-sm font-medium text-white mt-4">
+                User Image (Url)
             </label>
             <input
                 id="image"
@@ -47,6 +50,7 @@ function SignUpAdditions() {
                     passwordError ? 'border-red-500' : 'border-gray-300'
                 } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
             />
+
         </div>
 
     );
