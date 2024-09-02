@@ -1,4 +1,5 @@
 import BlogCard from "~/components/allBlogsPage/BlogCard";
+import {useLoaderData} from "react-router";
 
 
 interface Blog {
@@ -6,14 +7,13 @@ interface Blog {
     title: string;
     paragraph: string;
     image: string;
-    author: string;
+    authorId: number;
 }
 
-interface BlogsContainerProps {
-    blogs: Blog[];
-}
 
-export default function BlogsContainer({ blogs }: BlogsContainerProps) {
+
+export default function BlogsContainer() {
+    const blogs = useLoaderData<Blog[]>();
     return (
         <  >
             <div className="mx-auto w-[80%] flex flex-col gap-4   pt-10  ">
@@ -24,4 +24,5 @@ export default function BlogsContainer({ blogs }: BlogsContainerProps) {
         </>
     );
 }
+
 

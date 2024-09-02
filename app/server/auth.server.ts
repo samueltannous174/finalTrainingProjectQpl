@@ -84,7 +84,9 @@ export async function getUserFromSession(request) {
     if (!userId) {
         return null;
     }
-    return userId;
+    else{
+        return userId
+    }
 }
 
 export async function destroyUserSession(request) {

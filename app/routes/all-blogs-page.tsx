@@ -1,24 +1,26 @@
-import { useLoaderData } from "react-router";
 import BlogsContainer from "../components/allBlogsPage/blogsContainer";
-import {getBlogs} from "~/server/dataBaseData";
+import {getBlogs, getUserNameById} from "~/server/dataBaseData";
+import {json} from "@remix-run/node";
 
-interface Blog {
-    id: number;
-    name: string;
-    value: number;
-}
 
 export default function AllBlogsPage() {
-    const blogs = useLoaderData<Blog[]>();
-
-
     return (
         <div className=" bg-[#020b21] min-w-[420px]">
-                <BlogsContainer blogs={blogs} />
+                <BlogsContainer  />
         </div>
     );
 }
 
-export function loader() {
-    return getBlogs();
+export async function loader() {
+    const blogs= await getBlogs();
+
+    const blogsWithAuthors = await Promise.all(
+        blogs.map(async (blog) => {
+            const author = await getUserNameById(blog.authorId);
+
+            return { ...blog, author };
+        })
+    );
+    console.log(""+  blogsWithAuthors)
+    return json(blogsWithAuthors);
 }

@@ -7,7 +7,7 @@ interface BlogPageProps {
     title: string;
     paragraph: string;
     image: string;
-    author: string;
+    authorId: number;
 }
 
 interface AddFormPageProps {
@@ -16,6 +16,7 @@ interface AddFormPageProps {
 }
 
 function BlogPage({ blogData, content  }: AddFormPageProps) {
+
     const [searchParams] = useSearchParams();
     const mode = searchParams.get('mode');
 
