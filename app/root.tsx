@@ -6,6 +6,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import "./tailwind.css";
+import "./server/dataBaseData";
 
 
 import {
@@ -14,7 +15,8 @@ import {
 } from "@remix-run/react";
 import {LinksFunction, MetaFunction} from "@remix-run/node";
 import Header from "~/components/Header/Header";
-import {getUserFromSession} from "~/server/data";
+import {getUserFromSession} from "~/server/auth.server";
+import {getUserNameById} from "~/server/dataBaseData";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
@@ -43,7 +45,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <div className="w-full fixed boxShadowHeader top-0 bg-gray-900 box-shadow-header z-10">
           <Header/>
       </div>
-        {children}
+      <div className="mt-[40px]">
+          {children}
+      </div>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -81,7 +85,9 @@ export default function App() {
   return <Outlet />;
 }
 
-export function loader({ request }) {
-    return getUserFromSession(request);
+export async function  loader({ request }) {
+   const userId= await getUserFromSession(request);
+    console.log("userId"+userId)
+   return getUserNameById(userId)
 }
 

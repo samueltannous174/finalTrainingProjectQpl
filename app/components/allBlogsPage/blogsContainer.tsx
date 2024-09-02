@@ -15,7 +15,7 @@ interface BlogsContainerProps {
 export default function BlogsContainer({ blogs }: BlogsContainerProps) {
     return (
         <>
-            <div className="mx-auto w-[80%] flex flex-col gap-4  mt-[40px] pt-10  ">
+            <div className="mx-auto w-[80%] flex flex-col gap-4   pt-10  ">
                 {blogs.map((blog) => (
                     <BlogCard key={blog.id} blog={blog} />
                 ))}

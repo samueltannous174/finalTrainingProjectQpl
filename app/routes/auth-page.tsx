@@ -1,10 +1,10 @@
 import AuthForm from "~/components/Auth/AuthForm";
 import '.././index.css'
-import {getUserFromSession, login, signup} from "~/server/data";
+import {getUserFromSession, login, signup} from "~/server/auth.server";
 function AuthPage() {
 
     return (
-        <div className="flex flex-col justify-center gap-4 items-center bg-indigo-950 authForm h-[700px]">
+        <div className="flex flex-col justify-center gap-4 items-center bg-indigo-950 authForm h-[740px]">
             <AuthForm/>
         </div>
 

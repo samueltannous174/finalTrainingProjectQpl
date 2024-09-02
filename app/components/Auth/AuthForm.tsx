@@ -30,7 +30,7 @@ function AuthForm() {
     } = useAuthForm();
 
     const authMode = searchParams.get('mode') || 'login';
-    const submitBtnCaption = authMode === 'login' ? 'Login' : 'Create User';
+        const submitBtnCaption = authMode === 'login' ? 'Login' : 'Create User';
     const toggleBtnCaption =
         authMode === 'login' ? 'Create a new user' : 'Log in with existing user';
 

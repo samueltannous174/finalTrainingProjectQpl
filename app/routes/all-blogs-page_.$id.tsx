@@ -1,6 +1,6 @@
-import {getBlogsById} from "~/server/data";
+import {getBlogsById} from "~/server/dataBaseData";
 import {useLoaderData} from "react-router";
-import BlogPage from "~/components/addBlogPage/BlogPage";
+import BlogPage from "~/components/blogPage/BlogPage";
 
 
 export default function Index() {

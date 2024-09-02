@@ -1,6 +1,5 @@
 import HeaderItems from "~/components/Header/HeaderItems";
-import HeaderMobileAdditions from "~/components/Header/HeaderMobileAdditions";
-import {useLoaderData} from "react-router";
+import SideBar from "./SideBar";
 
 export default function Header() {
 
@@ -8,7 +7,7 @@ export default function Header() {
         <header className="bg-gray-900 shadow-gray-900 w-[90%] mx-auto  ">
             <main className=" flex justify-between items-center ">
                 <HeaderItems/>
-                <HeaderMobileAdditions/>
+                <SideBar/>
             </main>
         </header>
     );

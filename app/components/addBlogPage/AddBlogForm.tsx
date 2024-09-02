@@ -5,7 +5,7 @@ export default function AddBlogForm({content}:string ) {
     const isSubmitting = navigation.state !== 'idle';
 
     return (
-        <>          <Form method="post" className=" flex flex-col bg-sky-900 items-center space-y-1 justify-center ">
+        <>          <Form method="post" className=" flex flex-col bg-sky-900 items-center space-y-1 justify-center mt-3 ">
                     <div className="flex p-1 box-border">
                         <label htmlFor="image" className="flex-1 block text-md font-medium text-white">
                             Publication Title:

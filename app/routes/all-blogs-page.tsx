@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router";
-import { getBlogs } from "~/server/data";
 import BlogsContainer from "../components/allBlogsPage/blogsContainer";
+import {getBlogs} from "~/server/dataBaseData";
 
 interface Blog {
     id: number;

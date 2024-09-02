@@ -1,55 +1,7 @@
-import {Prisma, PrismaClient} from '@prisma/client';
 import {hash} from "@vanilla-extract/integration";
+import process from "process";
 import {createCookieSessionStorage, redirect} from "@remix-run/node";
-import * as process from "process";
-
-
-const prisma = new PrismaClient();
-
-export async function addBlog(blogData) {
-
-
-    try {
-        return await prisma.blog.create({
-            data: {
-                title: blogData.title,
-                paragraph: blogData.paragraph,
-                image: blogData.image,
-                authorId: blogData.authorId,
-            }
-        });
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
-}
-export async function getBlogs() {
-    try {
-        const blogs = await prisma.blog.findMany({
-            orderBy: { title: 'desc' } as Prisma.BlogOrderByWithRelationInput,
-        });
-        return blogs;
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
-}
-export async function getBlogsById(blogId) {
-    const id = parseInt(blogId);
-
-    try {
-        const blog = await prisma.blog.findUnique({
-            where: { id: id },
-        });
-        return blog;
-    } catch (error) {
-        console.log(error);
-        throw error;
-
-    }
-}
-
-
+import {prisma} from './dataBaseData'
 type Credentials={
     id:number;
     email:string;
@@ -60,9 +12,8 @@ type Credentials={
 
 export async function signup({ email, password , name,image }: Credentials) {
     const existingUser = await prisma.user.findFirst({ where: { email } });
-    const existingAuthor = await prisma.user.findFirst({ where: { name } });
+    // const existingAuthor = await prisma.user.findFirst({ where: { name } });
 
-    console.log(existingAuthor)
 
     if (existingUser) {
         const newError="Could not log you in, please check the provided email."
@@ -71,7 +22,7 @@ export async function signup({ email, password , name,image }: Credentials) {
 
     const passwordHash =  hash(password);
 
-  const user=await prisma.user.create({ data: { email: email, password: passwordHash,name:name,image:image }}) as Credentials ;
+    const user=await prisma.user.create({ data: { email: email, password: passwordHash,name:name,image:image }}) as Credentials ;
     return createUserSession(user.id, '/');
 
 }
@@ -123,7 +74,6 @@ async function createUserSession(userId, redirectPath) {
     });
 }
 export async function getUserFromSession(request) {
-    console.log(request)
     const session = await sessionStorage.getSession(
         request.headers.get('Cookie')
     );
@@ -132,7 +82,6 @@ export async function getUserFromSession(request) {
     console.log(userId)
 
     if (!userId) {
-        console.log("empty")
         return null;
     }
     return userId;
@@ -156,4 +105,3 @@ export async function requireUserSession(request) {
         throw redirect('/auth-page?mode=login');
     }
 }
-
