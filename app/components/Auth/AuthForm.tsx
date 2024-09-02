@@ -2,14 +2,22 @@ import {
     Form,
     Link,
     useSearchParams,
-    useNavigation,
+    useNavigation, useActionData,
 } from '@remix-run/react';
-import {useAuthForm} from "~/components/Auth/keyStrokeValidation";
+import {useAuthForm} from "~/components/Auth/UseAuth";
 import SignUpAdditions from "~/components/Auth/SignUpAdditions";
 
+interface ValidationErrors {
+    email?: string;
+    password?: string;
+
+}
 function AuthForm() {
     const [searchParams] = useSearchParams();
     const navigation = useNavigation();
+    const validation = useActionData<ValidationErrors>();
+
+
     const {
         email,
         password,
@@ -33,6 +41,11 @@ function AuthForm() {
     }`;
     return (
         <div  className={containerClassName}>
+            {validation &&  <p className=" text-[11px] text-red-600 ">
+                {validation}
+            </p>
+
+            }
             <h2 className="text-2xl font-bold text-center mb-6 text-white">
                 {authMode === 'login' ? 'Sign in to your account' : 'Create a new account'}
             </h2>
@@ -76,11 +89,10 @@ function AuthForm() {
                     {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
                 </div>
 
-
                 {authMode === 'signup'&&  <SignUpAdditions/>}
 
-
                 <div className="flex justify-between items-center">
+
                     <button
                         type="submit"
                         disabled={isButtonDisabled}
@@ -113,7 +125,10 @@ function AuthForm() {
                     <img src="https://pbs.twimg.com/profile_images/1440775265928417284/ywTBFW6L_400x400.png" alt="Google logo" className="w-5 h-5 mr-2" />
                     Sign in with Google
                 </button>
+
+
             </div>
+
             }
         </div>
     );

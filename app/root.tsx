@@ -14,6 +14,7 @@ import {
 } from "@remix-run/react";
 import {LinksFunction, MetaFunction} from "@remix-run/node";
 import Header from "~/components/Header/Header";
+import {getUserFromSession} from "~/server/data";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
@@ -79,3 +80,8 @@ export function ErrorBoundary() {
 export default function App() {
   return <Outlet />;
 }
+
+export function loader({ request }) {
+    return getUserFromSession(request);
+}
+

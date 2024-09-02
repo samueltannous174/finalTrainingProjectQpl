@@ -7,7 +7,7 @@ h1{
         font-weight: bold;
         color: #fcf7f7;
         text-align: center;
-    align-self: center;
+        align-self: center;
 
 }
 
@@ -23,7 +23,7 @@ img{
 .custom-width {
     width: 100vw;}
 .box-shadow{
-    box-shadow: 20px 10px rgba(187, 234, 245, 0.13);
+    box-shadow: 7px 7px rgba(187, 234, 245, 0.13);
 }
 .box-shadow-header{
     box-shadow: 1px 5px rgba(26, 61, 59, 0.3);
@@ -125,6 +125,9 @@ p {
 .ql-size-large{
     font-size: 23px;
     align-self: center;
+}
+.new{
+        background: #1a2e33;
 }
 
 

@@ -1,4 +1,4 @@
-import {useAuthForm} from "~/components/Auth/keyStrokeValidation";
+import {useAuthForm} from "~/components/Auth/UseAuth";
 
 function SignUpAdditions() {
 
@@ -28,11 +28,14 @@ function SignUpAdditions() {
                     passwordError ? 'border-red-500' : 'border-gray-300'
                 } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
             />
+            {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
+
             <label htmlFor="password" className="block text-sm font-medium text-white mt-4">
                 Username/Author:
             </label>
             <input
-                id="author"
+                id="name"
+                name="name"
                 required
                 className={`mt-1 block w-full px-3 py-1 border ${
                     passwordError ? 'border-red-500' : 'border-gray-300'
@@ -45,6 +48,7 @@ function SignUpAdditions() {
             </label>
             <input
                 id="image"
+                name="image"
                 required
                 className={`mt-1 block w-full px-3 py-2 border ${
                     passwordError ? 'border-red-500' : 'border-gray-300'

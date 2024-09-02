@@ -8,7 +8,7 @@ interface Blog {
     value: number;
 }
 
-export default function AllBlogs() {
+export default function AllBlogsPage() {
     const blogs = useLoaderData<Blog[]>();
 
 

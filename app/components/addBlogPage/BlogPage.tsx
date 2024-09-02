@@ -1,4 +1,4 @@
-import HtmlRenderer from "~/components/quillEditor/HtmlRenderer";
+import HtmlRenderer from "~/components/addBlogPage/quillEditor/HtmlRenderer";
 
 interface BlogPageProps {
     title: string;
@@ -13,8 +13,9 @@ interface AddFormPageProps {
 }
 
 function BlogPage({ blogData, content  }: AddFormPageProps) {
+    console.log(content)
     return (
-        <main className="flex box-border  mx-auto  justify-items-start  ">
+        <main className="flex box-border  mx-auto justify-center md:justify-items-start  ">
             <section className="flex flex-col space-y-2 p-4 md:p-0   ">
 
                 {/*<h1 className="text-5xl font-extrabold text-white text-center my-6">*/}
@@ -23,7 +24,7 @@ function BlogPage({ blogData, content  }: AddFormPageProps) {
                 {/*<p className="text-right text-cyan-500 italic font-semibold">*/}
                 {/*    By {blogData.author}*/}
                 {/*</p>*/}
-                <p className={`text-lg  text-black-400 leading-relaxed mb-4 break-words  flex-wrap  max-w-[268px] lg:max-w-[268px] xl:max-w-[468px] text-[13px]  md:max-w-[268px]`}>
+                <p className={`text-lg  text-black-400 leading-relaxed mb-4 break-words  flex-wrap  max-w-[268px] lg:max-w-[368px] xl:max-w-[568px] text-[13px]  md:max-w-[268px]`}>
                     <HtmlRenderer htmlString={content} />
                     </p>
             </section>

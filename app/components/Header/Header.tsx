@@ -1,5 +1,6 @@
 import HeaderItems from "~/components/Header/HeaderItems";
 import HeaderMobileAdditions from "~/components/Header/HeaderMobileAdditions";
+import {useLoaderData} from "react-router";
 
 export default function Header() {
 

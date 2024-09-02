@@ -7,6 +7,7 @@ import Bio from "~/components/landingPage/Bio/Bio";
 import AboutMe from "~/components/landingPage/AboutMe/AboutMe";
 
 
+
 export const meta: MetaFunction = () => {
     return [
         { title: "Home" },
@@ -29,3 +30,5 @@ export default function Index() {
         </main>
     );
 }
+
+

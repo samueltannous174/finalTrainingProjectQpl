@@ -1,12 +1,19 @@
-export const validate = (formData) => {
+type Form = {
+    title: string;
+    paragraph: string;
+    image: string;
+    authorId: number;
+};
 
-    const newErrors = {};
+export const validate = (formData: Form)=> {
+    const newErrors: Record<string, string> = {};
+
     if (!formData.title) {
         newErrors.title = "Title is required";
     } else if (formData.title.length < 5) {
         newErrors.title = "Title must be at least 5 characters long";
-    }else if (formData.title === 'Title') {
-        newErrors.title = "change Title";
+    } else if (formData.title === 'Title') {
+        newErrors.title = "Please change the title from 'Title'";
     }
 
     if (!formData.paragraph) {
@@ -15,14 +22,11 @@ export const validate = (formData) => {
         newErrors.paragraph = "Content must be at least 20 characters long";
     }
 
-
     if (!formData.image) {
         newErrors.image = "Image is required";
     }
 
-    if (!formData.author) {
-        newErrors.author = "Author is required";
-    }
+
     if (Object.keys(newErrors).length > 0) {
         throw newErrors;
     }

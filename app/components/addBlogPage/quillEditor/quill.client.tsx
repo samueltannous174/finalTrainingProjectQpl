@@ -24,8 +24,11 @@
         }, [quill,defaultValue])
 
         return (
-            <div className="bg-cyan-550  md:w-[300px] xl:w-[500px]" style={{  height: 700 }}>
+            <div className="bg-cyan-550  md:w-[300px] lg:w-[400px] xl:w-[600px] m-d" style={{  height: 700 }}>
                 <div  ref={quillRef} />
             </div>
         )
     }
+
+
+

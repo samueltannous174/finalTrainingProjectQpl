@@ -19,13 +19,13 @@ export default function BlogCard({ blog }: BlogCardProps) {
     return (
         <main className="grid bg-gray-700  blogCard lg:grid-cols-2  gap-4 ">
             <section  className=" lg:h-[400px] md: h-[200px]  flex flex-col  items-center align-middle justify-center p-5 box-border ">
-                    <img className=" lg:w-[90%] h-full rounded-t-lg " src={blog.image} alt="blogArticle " />
+                    <img className=" lg:w-[90%] h-full rounded-lg " src={blog.image} alt="blogArticle " />
             </section>
 
             <section className=" flex flex-col  justify-around items-center bg-gray-800  h-[400px]   ">
                 <nav className=" flex space-x-6 ">
                     <Link
-                        to={`/all-blogs/${blog.id}`}
+                        to={`/all-blogs-page/${blog.id}`}
                         className="text-blue-50 hover:bg-cyan-900 select-none px-12 py-5 text-xl"
                     >
                         Blog Page

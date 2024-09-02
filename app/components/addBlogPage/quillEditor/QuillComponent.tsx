@@ -1,5 +1,5 @@
 import { ClientOnly } from 'remix-utils/client-only';
-import Quill from '../quillEditor/quill.client';
+import Quill from './quill.client';
 import 'quill/dist/quill.snow.css';
 
 interface Props {
