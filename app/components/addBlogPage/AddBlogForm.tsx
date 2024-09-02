@@ -1,8 +1,10 @@
 import {Form, useNavigation} from "@remix-run/react";
+import {useLoaderData} from "react-router";
 
 export default function AddBlogForm({content}:string ) {
     const navigation = useNavigation();
     const isSubmitting = navigation.state !== 'idle';
+
 
     return (
         <>          <Form method="post" className=" flex flex-col bg-sky-900 items-center space-y-1 justify-center mt-3 ">

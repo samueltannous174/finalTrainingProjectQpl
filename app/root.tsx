@@ -4,15 +4,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
-import "./tailwind.css";
-import "./server/dataBaseData";
-
-
-import {
     isRouteErrorResponse,
     useRouteError,
 } from "@remix-run/react";
+import "./tailwind.css";
+
+
+
 import {LinksFunction, MetaFunction} from "@remix-run/node";
 import Header from "~/components/Header/Header";
 import {getUserFromSession} from "~/server/auth.server";

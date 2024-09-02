@@ -1,5 +1,5 @@
-import {  addBlog} from "~/server/dataBaseData";
-import {json, redirect} from "@remix-run/node";
+import {addBlog, getUserNameById} from "~/server/dataBaseData";
+import { redirect} from "@remix-run/node";
 import {validate} from "~/server/addFormValidation";
 import QuillComponent from "~/components/addBlogPage/quillEditor/QuillComponent";
 import {useState} from "react";
@@ -14,7 +14,6 @@ export default function AddBlogPage() {
         image: 'https://cdn.pixabay.com/photo/2017/04/20/07/07/add-2244771_960_720.png',
         author: 'Author',
     })
-
 
     const [content, setContent] = useState<string>(  '');
 
@@ -50,14 +49,14 @@ type Form = {
 };
 
 export async function loader({request}){
-   await requireUserSession(request)
-    return json({ message: ' successfully ' }, { status: 200 });
+    const userId= await requireUserSession(request)
+    return getUserNameById(userId)
 }
 export async function action({ request }) {
     const formData = await request.formData();
-    console.log(formData)
+    const userId= await requireUserSession(request)
     const blogData = Object.fromEntries(formData) as Form;
-    blogData.authorId=1
+    blogData.authorId=userId
     try {
         validate(blogData)
     } catch (error) {

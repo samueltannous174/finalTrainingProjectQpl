@@ -62,8 +62,6 @@ export async function getUserNameById(userId: number): Promise<User | null> {
     else{
         return null
     }
-
-
 }
 
 

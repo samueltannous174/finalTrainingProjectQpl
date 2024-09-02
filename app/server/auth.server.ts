@@ -104,4 +104,7 @@ export async function requireUserSession(request) {
     if (!userId) {
         throw redirect('/auth-page?mode=login');
     }
+    else{
+        return userId
+    }
 }
