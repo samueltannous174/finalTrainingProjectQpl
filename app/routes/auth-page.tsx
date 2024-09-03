@@ -21,9 +21,9 @@ type Form = {
 export async function action({request}) {
     const searchParams = new URL(request.url).searchParams;
     const authMode = searchParams.get('mode') || 'login';
-
     const formData = await request.formData();
     const credentials = Object.fromEntries(formData) as Form
+
     try {
         if (authMode === 'login') {
             return await login(credentials);
@@ -31,8 +31,7 @@ export async function action({request}) {
             return await signup(credentials);
         }
     } catch (error) {
-            return error.message        }
-
+            return error        }
 }
 
 

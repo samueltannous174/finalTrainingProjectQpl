@@ -10,14 +10,13 @@ import SignUpAdditions from "~/components/Auth/SignUpAdditions";
 interface ValidationErrors {
     email?: string;
     password?: string;
-
 }
 function AuthForm() {
     const [searchParams] = useSearchParams();
     const navigation = useNavigation();
     const validation = useActionData<ValidationErrors>();
-
-
+    const error=useActionData()
+    console.log(error)
     const {
         email,
         password,
@@ -73,6 +72,7 @@ function AuthForm() {
                     <label htmlFor="password" className="block text-sm font-medium text-white">
                         Password
                     </label>
+
                     <input
                         type="password"
                         id="password"
@@ -89,7 +89,7 @@ function AuthForm() {
                     {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
                 </div>
 
-                {authMode === 'signup'&&  <SignUpAdditions/>}
+                {authMode === 'signup'&&  <SignUpAdditions />}
 
                 <div className="flex justify-between items-center">
 
@@ -125,10 +125,7 @@ function AuthForm() {
                     <img src="https://pbs.twimg.com/profile_images/1440775265928417284/ywTBFW6L_400x400.png" alt="Google logo" className="w-5 h-5 mr-2" />
                     Sign in with Google
                 </button>
-
-
             </div>
-
             }
         </div>
     );

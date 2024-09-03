@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import {useNavigate} from "@remix-run/react";
+import HtmlRenderer from "~/components/addBlogPage/quillEditor/HtmlRenderer";
 
 
 
@@ -19,7 +20,9 @@ interface BlogCardProps {
 
 
 export default function BlogCard({blog} : BlogCardProps) {
-    const desc = blog.paragraph.substring(0, 100);
+    const desc = blog.paragraph.length > 40
+        ? blog.paragraph.substring(0, 40) + '...........'
+        : blog.paragraph;
     const navigate = useNavigate();
     const handleNavigateToBlogPage = () => {
         navigate(`/all-blogs-page/${blog.id}`);
@@ -47,9 +50,9 @@ export default function BlogCard({blog} : BlogCardProps) {
                             by {blog.authorName}
                     </p>
                 </div>
-                <div className="p-5 box-border text-blue-50">
-                    <p>
-                        {desc} ........................ (see more in the blog page)
+                <div className="box-border text-blue-50 max-w-[50%] mx-auto">
+                    <p className="max-w-[100%] break-words text-center align-center justify-center">
+                        <HtmlRenderer htmlString={ desc} />
                     </p>
                 </div>
             </section>

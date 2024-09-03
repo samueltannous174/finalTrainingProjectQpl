@@ -4,16 +4,6 @@ import {Prisma, PrismaClient} from '@prisma/client';
 
 export const prisma = new PrismaClient();
 
-
-
-interface Blog {
-    id: number;
-    title: string;
-    paragraph: string;
-    image: string;
-    authorId: number;
-}
-
 export async function addBlog(blogData) {
 
     try {

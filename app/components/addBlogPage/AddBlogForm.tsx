@@ -1,5 +1,4 @@
 import {Form, useActionData, useNavigation} from "@remix-run/react";
-
 export default function AddBlogForm({content}:string ) {
     const navigation = useNavigation();
     const isSubmitting = navigation.state !== 'idle';
@@ -14,8 +13,6 @@ export default function AddBlogForm({content}:string ) {
                               {error}
                             </div>)
                     }
-
-
                     )}
                 </div>}
 
@@ -44,7 +41,6 @@ export default function AddBlogForm({content}:string ) {
                     </div>
             <input type="hidden" name="paragraph" value={content} />
 
-
             <button
                 type="submit"
                 className={`inline-block w-1/2 px-1 py-1 bg-cyan-950 text-white font-medium text-lg rounded-md shadow ${
@@ -54,8 +50,8 @@ export default function AddBlogForm({content}:string ) {
             >
                 {isSubmitting ? 'Adding....' : 'Add Blog'}
             </button>
+
         </Form>
         </>
-
     );
 }

@@ -12,17 +12,22 @@ type Credentials={
 
 export async function signup({ email, password , name,image }: Credentials) {
     const existingUser = await prisma.user.findFirst({ where: { email } });
-    // const existingAuthor = await prisma.user.findFirst({ where: { name } });
-
-
+    const existingAuthor = await prisma.user.findFirst({ where: { name } });
+    console.log("signup")
+    if (existingAuthor) {
+        const newError="Could not complete, the user already exists."
+        throw newError;
+    }
     if (existingUser) {
-        const newError="Could not log you in, please check the provided email."
+        const newError="Could not complete, the email already exists."
         throw newError;
     }
 
     const passwordHash =  hash(password);
 
     const user=await prisma.user.create({ data: { email: email, password: passwordHash,name:name,image:image }}) as Credentials ;
+    console.log("created user")
+
     return createUserSession(user.id, '/');
 
 }

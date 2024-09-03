@@ -130,4 +130,11 @@ p {
         background: #1a2e33;
 }
 
-
+@container (max-height: 800px) {
+    .blog-page {
+      height: 3500px;
+    }
+}
+.container {
+    container-type: inline-size;
+}
