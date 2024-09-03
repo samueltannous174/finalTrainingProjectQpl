@@ -85,7 +85,6 @@ export default function App() {
 
 export async function  loader({ request }) {
    const userId= await getUserFromSession(request);
-    console.log("userId"+userId)
    return getUserNameById(userId)
 }
 

@@ -21,6 +21,5 @@ export async function loader() {
             return { ...blog, author };
         })
     );
-    console.log(""+  blogsWithAuthors)
     return json(blogsWithAuthors);
 }
