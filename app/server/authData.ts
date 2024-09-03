@@ -34,7 +34,6 @@ type CredentialsLogin={
 
 export async function login({ email, password }) {
     const existingUser = await prisma.user.findFirst({where: {email}}) as CredentialsLogin;
-    console.log("existingUser:"+existingUser)
     if (!existingUser) {
         const error = new Error(
             'Could not log you in, please check the provided email.'
@@ -43,7 +42,6 @@ export async function login({ email, password }) {
     }
 
     const passwordCorrect = hash(password)=== existingUser.password
-    console.log(passwordCorrect)
     if (!passwordCorrect) {
         const error = new Error(
             'Could not log you in, please check the provided password.'
@@ -79,7 +77,6 @@ export async function getUserFromSession(request) {
     );
 
     const userId = session.get('userId');
-    console.log(userId)
 
     if (!userId) {
         return null;

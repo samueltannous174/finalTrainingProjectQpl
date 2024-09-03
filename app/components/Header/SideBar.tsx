@@ -5,14 +5,13 @@ import {useLoaderData} from "react-router";
 export default function SideBar (){
     const user=useLoaderData()
     const [isOpen, setIsOpen] = useState(false);
-    console.log(isOpen)
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
 
 
     return<div className="md:hidden">
-        <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="md:hidden inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden focus:outline-none focus:ring-2  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="  md:hidden inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden focus:outline-none focus:ring-2  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         onClick={toggleSidebar}
         >
             <span className="sr-only">Open sidebar</span>
@@ -27,7 +26,7 @@ export default function SideBar (){
                aria-label="Sidebar">
 
             <div className="h-full px-3 py-4 overflow-y-auto bg-gray-800 dark:bg-gray-800">
-                <ul className="space-y-2 p-0 font-medium flex-col flex">
+                <ul className="space-y-2 p-0 font-medium flex-col flex ">
 
                         <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="md:hidden  items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg  focus:outline-none focus:ring-2  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                                 onClick={toggleSidebar}
@@ -39,8 +38,7 @@ export default function SideBar (){
                     <Link to="/" className=" text-blue-50 hover:bg-cyan-900 select-none px-4 py-2 text-center">Home</Link>
                     <Link to="/all-blogs-page" className=" text-blue-50 hover:bg-cyan-900 select-none px-4 py-2   text-center">Blog Pages</Link>
                     <Link to="/add-blog-page/?mode=add" className=" text-blue-50 hover:bg-cyan-900 select-none px-4 py-2 text-center">Add New Blog</Link>
-                    <div>
-                        {user ?  <div className="text-center  align-middle md:flex gap-4 space-y-4 p-1 box-border  items-center justify-center">
+                        {user ?  <div className="text-center  align-middle md:flex-col gap-4 space-y-4 p-1 box-border  items-center justify-center">
 
                                 <img className="w-[60px] h-[60px] rounded-full mx-auto  " src={user.image} alt="userImage"/>
                                 <p className="text-amber-200  font-bold justify-center text-center">
@@ -52,11 +50,11 @@ export default function SideBar (){
                                 </Form>
                             </div>
                             :
-                            <Link to="/auth-page?mode=login" className="px-6 py-1 text-white bg-cyan-950 font-bold rounded-md hover:bg-purple-200 select-none">
+                            <Link to="/auth-page?mode=login" className=" px-6 py-1 text-white bg-cyan-950 font-bold rounded-md hover:bg-purple-200 select-none justify-center w-1/2 mx-auto ">
                                 Sign In
                             </Link>
                         }
-                    </div>
+
                 </ul>
             </div>
 

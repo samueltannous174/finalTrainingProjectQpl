@@ -1,6 +1,6 @@
 import AuthForm from "~/components/Auth/AuthForm";
 import '.././index.css'
-import {getUserFromSession, login, signup} from "~/server/auth.server";
+import {getUserFromSession, login, signup} from "~/server/authData";
 function AuthPage() {
 
     return (
@@ -23,9 +23,7 @@ export async function action({request}) {
     const authMode = searchParams.get('mode') || 'login';
 
     const formData = await request.formData();
-    console.log(formData)
     const credentials = Object.fromEntries(formData) as Form
-    console.log(credentials)
     try {
         if (authMode === 'login') {
             return await login(credentials);

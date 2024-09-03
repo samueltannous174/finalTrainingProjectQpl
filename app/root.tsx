@@ -13,8 +13,8 @@ import "./tailwind.css";
 
 import {LinksFunction, MetaFunction} from "@remix-run/node";
 import Header from "~/components/Header/Header";
-import {getUserFromSession} from "~/server/auth.server";
-import {getUserNameById} from "~/server/dataBaseData";
+import {getUserFromSession} from "~/server/authData";
+import {getUserById} from "~/server/dataBaseData";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
@@ -82,9 +82,8 @@ export function ErrorBoundary() {
 export default function App() {
   return <Outlet />;
 }
-
 export async function  loader({ request }) {
-   const userId= await getUserFromSession(request);
-   return getUserNameById(userId)
+    const userId= await getUserFromSession(request);
+    return getUserById(userId)
 }
 

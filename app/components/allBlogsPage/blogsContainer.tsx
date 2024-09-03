@@ -14,8 +14,9 @@ interface Blog {
 
 export default function BlogsContainer() {
     const blogs = useLoaderData<Blog[]>();
+
     return (
-        <  >
+        <>
             <div className="mx-auto w-[80%] flex flex-col gap-4   pt-10  ">
                 {blogs.map((blog) => (
                     <BlogCard key={blog.id} blog={blog} />

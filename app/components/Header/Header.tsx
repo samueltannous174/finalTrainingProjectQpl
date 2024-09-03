@@ -1,6 +1,7 @@
 import HeaderItems from "~/components/Header/HeaderItems";
 import SideBar from "./SideBar";
 
+
 export default function Header() {
 
     return (
@@ -12,3 +13,6 @@ export default function Header() {
         </header>
     );
 }
+
+
+

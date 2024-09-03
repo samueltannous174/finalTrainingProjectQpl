@@ -13,13 +13,12 @@ export default function AllBlogsPage() {
 
 export async function loader() {
     const blogs= await getBlogs();
-
     const blogsWithAuthors = await Promise.all(
         blogs.map(async (blog) => {
-            const author = await getUserNameById(blog.authorId);
-
-            return { ...blog, author };
+            const authorName = await getUserNameById(blog.authorId);
+            return { ...blog, authorName };
         })
-    );
+    )
     return json(blogsWithAuthors);
 }
+

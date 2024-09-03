@@ -5,7 +5,7 @@ import QuillComponent from "~/components/addBlogPage/quillEditor/QuillComponent"
 import {useState} from "react";
 import AddBlogForm from "~/components/addBlogPage/AddBlogForm";
 import BlogPage from "~/components/blogPage/BlogPage";
-import {requireUserSession} from "~/server/auth.server";
+import {requireUserSession} from "~/server/authData";
 export default function AddBlogPage() {
     const paragraph= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n" + "\n"
     const [blogData] = useState({
@@ -59,9 +59,9 @@ export async function action({ request }) {
     blogData.authorId=userId
     try {
         validate(blogData)
-    } catch (error) {
-        console.log(error)
-        return error
+    } catch (errors) {
+        const errorMessages = Object.values(errors);
+        return errorMessages
     }
     await addBlog(blogData);
     return redirect('/');

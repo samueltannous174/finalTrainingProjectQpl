@@ -2,6 +2,7 @@
     import '../index.css'
     import Bio from "~/components/landingPage/Bio/Bio";
     import AboutMe from "~/components/landingPage/AboutMe/AboutMe";
+ import {useLoaderData} from "react-router";
 
 
 
@@ -13,6 +14,7 @@
     };
 
     export default function Index() {
+
 
         return (
             <main className="bg-gray-900 h-[2000px]  ">

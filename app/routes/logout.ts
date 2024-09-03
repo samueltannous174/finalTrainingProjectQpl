@@ -1,5 +1,5 @@
 import { json } from '@remix-run/node';
-import {destroyUserSession} from "~/server/auth.server";
+import {destroyUserSession} from "~/server/authData";
 
 export function action({ request }) {
     if (request.method !== 'POST') {

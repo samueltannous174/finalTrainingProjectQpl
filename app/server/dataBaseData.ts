@@ -4,6 +4,16 @@ import {Prisma, PrismaClient} from '@prisma/client';
 
 export const prisma = new PrismaClient();
 
+
+
+interface Blog {
+    id: number;
+    title: string;
+    paragraph: string;
+    image: string;
+    authorId: number;
+}
+
 export async function addBlog(blogData) {
 
     try {
@@ -52,7 +62,18 @@ type User={
     name:string;
     image:string;
 }
-export async function getUserNameById(userId: number): Promise<User | null> {
+export async function getUserNameById(userId: number): Promise<string | null> {
+    if (userId){
+        const user = await prisma.user.findUnique({
+            where: { id: userId },
+        }) as User
+        return user ? user.name : null;
+    }
+    else{
+        return null
+    }
+}
+export async function getUserById(userId: number): Promise<User | null> {
     if (userId){
         const user = await prisma.user.findUnique({
             where: { id: userId },
@@ -63,6 +84,7 @@ export async function getUserNameById(userId: number): Promise<User | null> {
         return null
     }
 }
+
 
 
 

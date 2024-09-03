@@ -1,13 +1,24 @@
-import {Form, useNavigation} from "@remix-run/react";
-import {useLoaderData} from "react-router";
+import {Form, useActionData, useNavigation} from "@remix-run/react";
 
 export default function AddBlogForm({content}:string ) {
     const navigation = useNavigation();
     const isSubmitting = navigation.state !== 'idle';
+    const errors=useActionData()
 
 
     return (
         <>          <Form method="post" className=" flex flex-col bg-sky-900 items-center space-y-1 justify-center mt-3 ">
+                {errors &&  <div className=" text-[14px] text-red-600 flex gap-4  ">
+                    {errors.map((error,index)=> {
+                          return ( <div key={index}>
+                              {error}
+                            </div>)
+                    }
+
+
+                    )}
+                </div>}
+
                     <div className="flex p-1 box-border">
                         <label htmlFor="image" className="flex-1 block text-md font-medium text-white">
                             Publication Title:
