@@ -6,8 +6,7 @@ type Form = {
 };
 
 export const validate = (formData: Form)=> {
-    const newErrors: Record<string, string> = {};
-
+    const newErrors: Record<string, string> = {}
     if (!formData.title) {
         newErrors.title = "Title is required";
     } else if (formData.title.length < 5) {
@@ -25,7 +24,6 @@ export const validate = (formData: Form)=> {
     if (!formData.image) {
         newErrors.image = "Image is required";
     }
-
 
     if (Object.keys(newErrors).length > 0) {
         throw newErrors;

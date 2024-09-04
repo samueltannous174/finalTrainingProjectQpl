@@ -1,4 +1,5 @@
 import {Prisma, PrismaClient} from '@prisma/client';
+import {redirect} from "@remix-run/node";
 
 
 
@@ -23,7 +24,8 @@ export async function addBlog(blogData) {
 export async function getBlogs() {
     try {
         const blogs = await prisma.blog.findMany({
-            orderBy: { title: 'desc' } as Prisma.BlogOrderByWithRelationInput,
+            orderBy: { title: 'desc' }  as Prisma,
+            include:  {author: true, comments:true}
         });
         return blogs;
     } catch (error) {
@@ -31,20 +33,7 @@ export async function getBlogs() {
         throw error;
     }
 }
-export async function getBlogsById(blogId) {
-    const id = parseInt(blogId);
 
-    try {
-        const blog = await prisma.blog.findUnique({
-            where: { id: id },
-        });
-        return blog;
-    } catch (error) {
-        console.log(error);
-        throw error;
-
-    }
-}
 type User={
     id:number;
     email:string;
@@ -52,17 +41,7 @@ type User={
     name:string;
     image:string;
 }
-export async function getUserNameById(userId: number): Promise<string | null> {
-    if (userId){
-        const user = await prisma.user.findUnique({
-            where: { id: userId },
-        }) as User
-        return user ? user.name : null;
-    }
-    else{
-        return null
-    }
-}
+
 export async function getUserById(userId: number): Promise<User | null> {
     if (userId){
         const user = await prisma.user.findUnique({
@@ -74,6 +53,25 @@ export async function getUserById(userId: number): Promise<User | null> {
         return null
     }
 }
+
+export async function addComment(commentData) {
+    await prisma.comment.create({
+        data: {
+            content: commentData.content,
+            blogId: commentData.blogId,
+            authorId: commentData.authorId,
+        },
+    });
+
+    return redirect(`./`);
+}
+
+
+
+
+
+
+
 
 
 

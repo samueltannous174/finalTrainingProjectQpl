@@ -2,18 +2,13 @@ import BlogCard from "~/components/allBlogsPage/BlogCard";
 import {useLoaderData} from "react-router";
 
 
-interface Blog {
-    id: number;
-    title: string;
-    paragraph: string;
-    image: string;
-    authorId: number;
-}
+
 
 
 
 export default function BlogsContainer() {
-    const blogs = useLoaderData<Blog[]>();
+    const blogs = useLoaderData();
+
 
     return (
         <>
@@ -25,5 +20,6 @@ export default function BlogsContainer() {
         </>
     );
 }
+
 
 

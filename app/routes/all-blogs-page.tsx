@@ -1,5 +1,5 @@
 import BlogsContainer from "../components/allBlogsPage/blogsContainer";
-import {getBlogs, getUserNameById} from "~/server/dataBaseData";
+import {addComment, getBlogs} from "~/server/dataBaseData";
 import {json} from "@remix-run/node";
 
 
@@ -11,14 +11,23 @@ export default function AllBlogsPage() {
     );
 }
 
+
+
+
 export async function loader() {
     const blogs= await getBlogs();
-    const blogsWithAuthors = await Promise.all(
-        blogs.map(async (blog) => {
-            const authorName = await getUserNameById(blog.authorId);
-            return { ...blog, authorName };
-        })
-    )
-    return json(blogsWithAuthors);
+    return json(blogs);
 }
 
+
+export const action = async ({ request }: { request: Request }) => {
+    const formData = await request.formData();
+    const commentsData = Object.fromEntries(formData)
+
+    try {
+      return  addComment(commentsData)
+    }catch (error){
+        console.log(error)
+    }
+
+};

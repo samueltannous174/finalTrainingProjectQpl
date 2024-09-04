@@ -22,8 +22,9 @@
                 <div className="flex flex-col  items-center justify-center " >
                     <div className="mt-[60px]" >
                         <Bio/>
+                        <AboutMe/>
                     </div>
-                    <AboutMe/>
+
                 </div>
             </main>
         );

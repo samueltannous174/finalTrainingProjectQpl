@@ -26,10 +26,9 @@ export default function BlogCard({blog} : BlogCardProps) {
     const navigate = useNavigate();
     const handleNavigateToBlogPage = () => {
         navigate(`/all-blogs-page/${blog.id}`);
-    };
+    }
 
-
-
+    
     return (
         <button className="grid bg-gray-700  blogCard lg:grid-cols-2  gap-4 "
         onClick={handleNavigateToBlogPage}
