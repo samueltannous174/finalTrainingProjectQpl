@@ -21,7 +21,7 @@ export default function HeaderItems() {
 
         <div>
                 {user ?  <div className="hidden md:flex gap-4 p-1 box-border  items-center justify-center">
-                    <img className="w-[40px] h-[40px] rounded-full "
+                    <img className="w-[45px] h-[45px] rounded-full object-cover "
                          src={user.image}
                          alt="userImage"
                     />

@@ -1,11 +1,6 @@
 import BlogCard from "~/components/allBlogsPage/BlogCard";
 import {useLoaderData} from "react-router";
 
-
-
-
-
-
 export default function BlogsContainer() {
     const blogs = useLoaderData();
 

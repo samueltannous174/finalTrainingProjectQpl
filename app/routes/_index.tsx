@@ -2,7 +2,7 @@
     import '../index.css'
     import Bio from "~/components/landingPage/Bio/Bio";
     import AboutMe from "~/components/landingPage/AboutMe/AboutMe";
- import {useLoaderData} from "react-router";
+ import Skills from "~/components/landingPage/Skills/Skills";
 
 
 
@@ -17,12 +17,13 @@
 
 
         return (
-            <main className="bg-gray-900 h-[2000px]  ">
+            <main className="bg-gray-900">
 
-                <div className="flex flex-col  items-center justify-center " >
+                <div className="flex flex-col items-center justify-center " >
                     <div className="mt-[60px]" >
                         <Bio/>
                         <AboutMe/>
+                        <Skills/>
                     </div>
 
                 </div>

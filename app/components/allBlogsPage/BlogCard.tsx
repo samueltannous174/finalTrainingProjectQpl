@@ -3,14 +3,19 @@ import {useNavigate} from "@remix-run/react";
 import HtmlRenderer from "~/components/addBlogPage/quillEditor/HtmlRenderer";
 
 
-
+type User={
+    id:number;
+    email:string;
+    password:string;
+    name:string;
+    image:string;
+}
 interface BlogWithAuthorName {
     id: number;
     title: string;
     paragraph: string;
     image: string;
-    authorId: number;
-    authorName: string
+    author: User;
 }
 
 interface BlogCardProps {
@@ -46,7 +51,7 @@ export default function BlogCard({blog} : BlogCardProps) {
                     </h1>
 
                     <p className="text-cyan-500 italic font-semibold">
-                            by {blog.authorName}
+                            by {blog.author.name}
                     </p>
                 </div>
                 <div className="box-border text-blue-50 max-w-[50%] mx-auto">

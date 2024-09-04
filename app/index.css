@@ -23,7 +23,10 @@ img{
 .custom-width {
     width: 100vw;}
 .box-shadow{
-    box-shadow: 7px 7px rgba(187, 234, 245, 0.13);
+    box-shadow: 15px 15px rgba(187, 250, 245, 0.13);
+}
+.box-shadow-about-me{
+    box-shadow: -40px 20px rgba(187, 234, 245, 0.13);
 }
 .box-shadow-header{
     box-shadow: 1px 5px rgba(26, 61, 59, 0.3);
@@ -32,7 +35,9 @@ img{
     .box-shadow{
         box-shadow: 10px 10px rgba(165, 231, 243, 0.19), -10px 10px rgba(165, 231, 243, 0.19);
     }}
-
+.box-shadow-about-me{
+    box-shadow: 10px 10px rgba(165, 231, 243, 0.19), -10px 10px rgba(165, 231, 243, 0.19);
+}
 
 body{
     background: #4c97ad;

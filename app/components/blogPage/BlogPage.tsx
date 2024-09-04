@@ -35,7 +35,6 @@ interface BlogPageProps {
 }
 
 function BlogPage({ blogData, content  }: BlogPageProps) {
-    console.log(blogData)
     const [searchParams] = useSearchParams();
     const mode = searchParams.get('mode');
     return (

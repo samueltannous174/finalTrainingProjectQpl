@@ -1,27 +1,47 @@
+type User={
+    id:number;
+    email:string;
+    password:string;
+    name:string;
+    image:string;
+}
+type Comment={
+    content: string;
+    createdAt: number;
+    blogId: number;
+    authorId:number;
+    author: User
+}
+
+type CommentComponentProps={
+    user:User;
+    commentData:Comment
+    userExists:boolean
+}
 
 
-export default function CommentComponent() {
-    // const comments= useLoaderData()
-    // console.log(comments)
+export default function CommentComponent({commentData,userExists , user}: CommentComponentProps) {
     return (
-
         <div className="flex flex-col gap-5 m-3">
             <div className="flex w-full justify-between rounded-md">
                 <div className="p-3">
                     <div className="flex gap-3 items-center">
                         <img
-                            src="https://avatars.githubusercontent.com/u/22263436?v=4"
+                            src={commentData.authorId? commentData.author.image : "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-social-600nw-1677509740.jpg" }
                             alt="User 1"
                             className="object-cover  w-10 h-10 rounded-full  border-emerald-400 shadow-emerald-400"
                         />
                         <div>
                             <h3 className="font-bold text-white">
-                                User 1
+                                {commentData.authorId? commentData.author.name: "Anonymous"}
                             </h3>
                         </div>
                     </div>
-                    <p className="text-gray-600 mt-2">
-                        This is a sample comment
+                    <p className="text-gray-200 mt-2">
+                        {commentData.content}
+                    </p>
+                    <p className="text-gray-200 mt-2">
+                        {commentData.createdAt}
                     </p>
                     <button className="text-right text-blue-500">Reply</button>
                 </div>

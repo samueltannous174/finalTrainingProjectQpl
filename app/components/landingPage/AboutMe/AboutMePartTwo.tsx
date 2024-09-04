@@ -1,7 +1,7 @@
 
 export default function AboutMePartTwo() {
     return (
-        <main className=" w-[70%] flex flex-col gap-4  items-start  " >
+        <main className=" lg:w-[70%] flex flex-col gap-4  lg:items-start  items-center " >
             <h1 className="w-full">
                 Curious about me? Here you have it:
             </h1>
