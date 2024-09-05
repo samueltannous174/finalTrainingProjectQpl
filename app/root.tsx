@@ -9,6 +9,9 @@ import {
 } from "@remix-run/react";
 import "./tailwind.css";
 
+import { ThemeProvider } from '../app/components/ThemeContext/ThemeContext';
+
+
 
 
 import {LinksFunction, MetaFunction} from "@remix-run/node";
@@ -30,6 +33,7 @@ export const meta: MetaFunction = () => {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
+
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
@@ -40,13 +44,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       </head>
       <body>
-      <div className="w-full fixed boxShadowHeader top-0 bg-gray-900 box-shadow-header z-10">
+      <ThemeProvider>
+
           <Header/>
-      </div>
+
       <div className="mt-[40px]">
           {children}
       </div>
-        <ScrollRestoration />
+      </ThemeProvider>
+      <ScrollRestoration />
         <Scripts />
       </body>
     </html>

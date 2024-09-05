@@ -5,10 +5,8 @@ h1{
         caret-color: transparent;
         font-size: 2.5rem;
         font-weight: bold;
-        color: #fcf7f7;
         text-align: center;
         align-self: center;
-
 }
 
 button{
@@ -25,16 +23,27 @@ img{
 .box-shadow{
     box-shadow: 15px 15px rgba(187, 250, 245, 0.13);
 }
+
+.box-shadow-black{
+    box-shadow: 15px 15px rgba(105, 108, 108, 0.45);
+}
+
 .box-shadow-about-me{
     box-shadow: -40px 20px rgba(187, 234, 245, 0.13);
+}
+.box-shadow-about-me-Black{
+    box-shadow: -40px 20px rgba(9, 13, 14, 0.24);
 }
 .box-shadow-header{
     box-shadow: 1px 5px rgba(26, 61, 59, 0.3);
 }
+
 @media  (max-width: 800px) {
     .box-shadow{
         box-shadow: 10px 10px rgba(165, 231, 243, 0.19), -10px 10px rgba(165, 231, 243, 0.19);
     }
+}
+@media  (max-width: 1100px) {
     .box-shadow-about-me{
         box-shadow: 10px 10px rgba(165, 231, 243, 0.19), -10px 10px rgba(165, 231, 243, 0.19);
     }
@@ -43,7 +52,6 @@ img{
 
 body{
     background: #4c97ad;
-    /*background: #020b21;*/
 
 }
 .auth-form{
@@ -55,7 +63,7 @@ body{
 }
 
 .ql-editor{
-    height: 500px;
+    height: auto;
 }
 .ql-container.ql-snow{
     height: 500px;
@@ -68,8 +76,6 @@ ol {
     list-style-type: decimal;
     margin: 1em 0;
 }
-
-
 h1 {
     font-size: 2em;
     margin: 0.67em 0;
@@ -111,17 +117,17 @@ p {
 
 
 
-@media  (max-width: 767px) {
-    .ql-editor-width {
-        max-width: 300px;
-    }
-    .ql-editor {
-        height: 400px;
-    }
-    .ql-container{
-        height: 400px;
-    }
-  }
+/*@media  (max-width: 767px) {*/
+/*    .ql-editor-width {*/
+/*        max-width: 300px;*/
+/*    }*/
+/*    .ql-editor {*/
+/*        height: 400px;*/
+/*    }*/
+/*    .ql-container{*/
+/*        height: 400px;*/
+/*    }*/
+/*  }*/
 
 .ql-size-large{
     font-size: 23px;

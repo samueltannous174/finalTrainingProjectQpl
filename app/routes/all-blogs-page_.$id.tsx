@@ -3,6 +3,7 @@ import BlogPage from "~/components/blogPage/BlogPage";
 import {addComment, getBlogsById, getUserById} from "~/server/dataBaseData";
 import {getUserFromSession} from "~/server/authData";
 import {json} from "@remix-run/node";
+import {useTheme} from "~/components/ThemeContext/ThemeContext";
 
 type User={
     id:number;
@@ -34,10 +35,9 @@ type Data={
 
 export default function AllBlogsPageId() {
     const data=useLoaderData() as Data
-
-
+    const { theme } = useTheme();
     return (
-        <main className="bg-gray-900  ">
+        <main className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-blue-50'}`}>
             <BlogPage blogData={data.blog}/>
         </main>
     );

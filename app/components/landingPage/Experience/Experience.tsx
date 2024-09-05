@@ -1,9 +1,10 @@
-import ExperienceCard from "~/components/landingPage/Experience/ExperienceCard";
+import ExperienceCard from '~/components/landingPage/Experience/ExperienceCard';
+import {useTheme} from "~/components/ThemeContext/ThemeContext";
 
 const experienceData = [
     {
         title: "Sr. Frontend Developer",
-            dates: "Nov 2021 – Present",
+        dates: "Nov 2021 – Present",
         description: [
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "Ut pretium arcu et massa semper, id fringilla leo semper.",
@@ -32,23 +33,32 @@ const experienceData = [
 ];
 
 export default function Experience() {
+    const { theme } = useTheme();
+
     return (
-        <main className="flex flex-col  p-10 bg-slate-800 items-center space-y-10">
-            <div className="flex justify-center ">
-                <button className="bg-gray-500 text-white py-3 px-8 rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
+        <main
+            className={`flex flex-col p-10 items-center space-y-10 ${
+                theme === 'dark' ? 'bg-slate-800 text-white' : 'bg-slate-50 text-gray-900'
+            }`}
+        >
+            <div className="flex justify-center">
+                <button
+                    className={`py-3 px-8 rounded hover:bg-gray-600 focus:outline-none focus:ring-2 ${
+                        theme === 'dark'
+                            ? 'bg-gray-500 text-white focus:ring-gray-300'
+                            : 'bg-gray-300 text-gray-800 focus:ring-gray-500'
+                    }`}
+                >
                     Experience
                 </button>
             </div>
 
-            <p className="text-white text-[20px]">
-                    Here is a quick summary of my most recent experiences:
-                </p>
-            {experienceData.map((experience)=>{
-              return <ExperienceCard experienceData={experience} />
-            })}
+            <p className="text-[20px]">
+                Here is a quick summary of my most recent experiences:
+            </p>
+            {experienceData.map((experience, index) => (
+                <ExperienceCard key={index} experienceData={experience} />
+            ))}
         </main>
-
     );
 }
-
-

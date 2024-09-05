@@ -8,10 +8,8 @@
         setContent: (content:string) => void;
     }
 
-    export default function Quill({ defaultValue, setContent }: Props) {
+    export default function Quill ({ defaultValue, setContent }: Props) {
         const { quill, quillRef } = useQuill()
-
-
         useEffect(() => {
             if (quill && defaultValue) {
                 quill.clipboard.dangerouslyPasteHTML(defaultValue)

@@ -5,6 +5,8 @@
  import Skills from "~/components/landingPage/Skills/Skills";
  import Experience from "~/components/landingPage/Experience/Experience";
  import Footer from "~/components/landingPage/Footer/Footer";
+ import {useThemesContext} from "react-admin";
+ import {useTheme} from "~/components/ThemeContext/ThemeContext";
 
 
 
@@ -16,13 +18,12 @@
     };
 
     export default function Index() {
-
-
+        const { theme } = useTheme();
         return (
-            <main className="bg-gray-900 ">
-
+            <main className={` ${theme === 'dark' ? 'bg-gray-900 ' : 'bg-blue-50 '} `}
+            >
                 <div className="flex flex-col items-center justify-center " >
-                    <div className="mt-[60px]" >
+                    <div className="mt-[60px] " >
                         <Bio/>
                         <AboutMe/>
                         <Skills/>

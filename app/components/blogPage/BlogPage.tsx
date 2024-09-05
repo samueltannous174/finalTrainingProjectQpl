@@ -38,8 +38,8 @@ function BlogPage({ blogData, content  }: BlogPageProps) {
     const [searchParams] = useSearchParams();
     const mode = searchParams.get('mode');
     return (
-        <main className="flex box-border mx-auto justify-center md:justify-start  ">
-            <section className="flex flex-col space-y-2 p-4 md:p-0 ">
+        <main className="box-border mx-auto justify-center flex flex-col   ">
+            <section className="flex flex-col space-y-36 p-4 md:p-0 ">
                 {mode === 'add' ? (
                     <p className={`text-lg text-black-400 leading-relaxed mb-4 break-words flex-wrap max-w-[268px] lg:max-w-[368px] xl:max-w-[568px] text-[13px] md:max-w-[268px]`}>
                         <ClientOnly>
@@ -48,13 +48,13 @@ function BlogPage({ blogData, content  }: BlogPageProps) {
                     </p>
                 ) : (
                     <>
-                    <p className={`text-lg leading-relaxed mb-4 break-words flex-wrap w-[50%] text-[13px] self-center mt-[60px]`}>
+                    <p className={`text-lg leading-relaxed mb-4 break-words flex-wrap w-[70%] lg:w-[50%] text-[13px] self-center mt-[60px]`}>
                         <ClientOnly>
                             {() => !(blogData) || blogData.paragraph && <HtmlRenderer htmlString={blogData.paragraph}/>}
                         </ClientOnly>
 
                     </p>
-                        <div className="flex justify-center">
+                        <div className="flex justify-center mt-[50px]">
                             <CommentsSection />
                         </div>
                     </>
