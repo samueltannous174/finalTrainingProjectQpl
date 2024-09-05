@@ -4,7 +4,7 @@ import {
     useSearchParams
 } from '@remix-run/react';
 import CommentsSection from "~/components/blogPage/CommentsSection";
-
+import { ClientOnly } from 'remix-utils/client-only';
 
 type User={
     id:number;
@@ -31,7 +31,7 @@ interface Blog {
 
 interface BlogPageProps {
     blogData?: Blog;
-    content?: string;
+    content: string;
 }
 
 function BlogPage({ blogData, content  }: BlogPageProps) {
@@ -42,12 +42,17 @@ function BlogPage({ blogData, content  }: BlogPageProps) {
             <section className="flex flex-col space-y-2 p-4 md:p-0 ">
                 {mode === 'add' ? (
                     <p className={`text-lg text-black-400 leading-relaxed mb-4 break-words flex-wrap max-w-[268px] lg:max-w-[368px] xl:max-w-[568px] text-[13px] md:max-w-[268px]`}>
-                        {content && <HtmlRenderer htmlString={content}/>}
+                        <ClientOnly>
+                                {() =><HtmlRenderer htmlString={content}/>}
+                        </ClientOnly>
                     </p>
                 ) : (
                     <>
                     <p className={`text-lg leading-relaxed mb-4 break-words flex-wrap w-[50%] text-[13px] self-center mt-[60px]`}>
-                        {!(blogData) || blogData.paragraph && <HtmlRenderer htmlString={blogData.paragraph}/>}
+                        <ClientOnly>
+                            {() => !(blogData) || blogData.paragraph && <HtmlRenderer htmlString={blogData.paragraph}/>}
+                        </ClientOnly>
+
                     </p>
                         <div className="flex justify-center">
                             <CommentsSection />

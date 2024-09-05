@@ -17,7 +17,7 @@ export default function BioPartOne() {
         <>
             <main className="   flex-col space-y-9  ">
                 <section className="flex-col ">
-                    <div className="flex space-x-20 items-center ">
+                    <div className="flex space-x-3 md:space-x-20 items-center  ">
                         <h1 className="text-4xl font-extrabold text-white leading-tight mb-4 no-cursor ">
                             {name}
                         </h1>

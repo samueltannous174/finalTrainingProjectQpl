@@ -3,6 +3,8 @@
     import Bio from "~/components/landingPage/Bio/Bio";
     import AboutMe from "~/components/landingPage/AboutMe/AboutMe";
  import Skills from "~/components/landingPage/Skills/Skills";
+ import Experience from "~/components/landingPage/Experience/Experience";
+ import Footer from "~/components/landingPage/Footer/Footer";
 
 
 
@@ -17,15 +19,16 @@
 
 
         return (
-            <main className="bg-gray-900">
+            <main className="bg-gray-900 ">
 
                 <div className="flex flex-col items-center justify-center " >
                     <div className="mt-[60px]" >
                         <Bio/>
                         <AboutMe/>
                         <Skills/>
+                        <Experience/>
+                        <Footer/>
                     </div>
-
                 </div>
             </main>
         );

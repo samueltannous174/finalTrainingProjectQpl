@@ -7,7 +7,7 @@ export default function AboutMePartOne() {
                     <img
                         src="https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         alt="myPic"
-                        className="  box-shadow-about-me  lg:w-[60%] box-shadow-about-me h-[400px] lg:h-[30%] xl:h-[50%] shadow-gray-300 "
+                        className="  box-shadow-about-me  lg:w-[60%]  h-[400px] lg:h-[30%] xl:h-[50%] shadow-gray-300 "
                     />
                 </div>
             </main>

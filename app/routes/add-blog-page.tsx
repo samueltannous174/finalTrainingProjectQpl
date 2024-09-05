@@ -11,7 +11,7 @@ export default function AddBlogPage() {
     const [content, setContent] = useState<string>(  '');
 
     return (
-        <main className=" bg-gray-800 md:min-h-full   ">
+        <main className=" bg-gray-800 md:min-h-[900px]  ">
                 <div className=" grid grid-cols-1  ">
                 <section className=" flex flex-col bg-sky-900 items-center space-y-1 justify-center md:fixed ">
                     <AddBlogForm content={content}/>

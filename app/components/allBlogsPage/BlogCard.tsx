@@ -25,15 +25,12 @@ interface BlogCardProps {
 
 
 export default function BlogCard({blog} : BlogCardProps) {
-    const desc = blog.paragraph.length > 40
-        ? blog.paragraph.substring(0, 40) + '...........'
-        : blog.paragraph;
+    const author="by  "+blog.author.name
+
     const navigate = useNavigate();
     const handleNavigateToBlogPage = () => {
         navigate(`/all-blogs-page/${blog.id}`);
     }
-
-    
     return (
         <button className="grid bg-gray-700  blogCard lg:grid-cols-2  gap-4 "
         onClick={handleNavigateToBlogPage}
@@ -51,14 +48,10 @@ export default function BlogCard({blog} : BlogCardProps) {
                     </h1>
 
                     <p className="text-cyan-500 italic font-semibold">
-                            by {blog.author.name}
+                             {author}
                     </p>
                 </div>
-                <div className="box-border text-blue-50 max-w-[50%] mx-auto">
-                    <p className="max-w-[100%] break-words text-center align-center justify-center">
-                        <HtmlRenderer htmlString={ desc} />
-                    </p>
-                </div>
+
             </section>
         </button>
     );

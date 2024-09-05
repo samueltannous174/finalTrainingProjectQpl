@@ -1,5 +1,5 @@
 import {Prisma, PrismaClient} from '@prisma/client';
-import {redirect} from "@remix-run/node";
+import {json} from "@remix-run/node";
 
 
 
@@ -83,7 +83,7 @@ export async function addComment(commentData) {
         },
     });
 
-    return redirect(`./`);
+    return json({message:"success"});
 }
 
 

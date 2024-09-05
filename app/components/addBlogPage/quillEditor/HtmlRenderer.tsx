@@ -5,11 +5,13 @@ type Props = {
 
 function HtmlRenderer({ htmlString }: Props) {
     return (
-        <div
-            dangerouslySetInnerHTML={{ __html: htmlString }}
-        />
+        <div className="ql-editor"
+            dangerouslySetInnerHTML={{ __html: htmlString }}>
+        </div>
     );
 }
 
 export default HtmlRenderer;
+
+
 

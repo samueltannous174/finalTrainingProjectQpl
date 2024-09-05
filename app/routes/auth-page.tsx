@@ -31,7 +31,9 @@ export async function action({request}) {
             return await signup(credentials);
         }
     } catch (error) {
-            return error        }
+        console.log(error)
+            return error.message
+    }
 }
 
 

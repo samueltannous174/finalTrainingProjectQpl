@@ -15,11 +15,11 @@ export async function signup({ email, password , name,image }: Credentials) {
     const existingAuthor = await prisma.user.findFirst({ where: { name } });
     console.log("signup")
     if (existingAuthor) {
-        const newError="Could not complete, the user already exists."
+        const newError= new Error("Could not complete, the user already exists.")
         throw newError;
     }
     if (existingUser) {
-        const newError="Could not complete, the email already exists."
+        const newError= new Error("Could not complete, the email already exists.")
         throw newError;
     }
 
@@ -27,7 +27,6 @@ export async function signup({ email, password , name,image }: Credentials) {
 
     const user=await prisma.user.create({ data: { email: email, password: passwordHash,name:name,image:image }}) as Credentials ;
     console.log("created user")
-
     return createUserSession(user.id, '/');
 
 }

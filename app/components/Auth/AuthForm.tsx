@@ -15,8 +15,8 @@ function AuthForm() {
     const [searchParams] = useSearchParams();
     const navigation = useNavigation();
     const validation = useActionData<ValidationErrors>();
-    const error=useActionData()
-    console.log(error)
+    console.log(validation)
+
     const {
         email,
         password,

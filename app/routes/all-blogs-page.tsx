@@ -11,9 +11,6 @@ export default function AllBlogsPage() {
     );
 }
 
-
-
-
 export async function loader() {
     const blogs= await getBlogs();
     return json(blogs);
