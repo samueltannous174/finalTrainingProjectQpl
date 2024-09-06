@@ -14,13 +14,12 @@ type Comment={
 }
 
 type CommentComponentProps={
-    user:User;
     commentData:Comment
-    userExists:boolean
+    key:number
 }
 
 
-export default function CommentComponent({commentData,userExists , user}: CommentComponentProps) {
+export default function CommentComponent({commentData}: CommentComponentProps) {
     return (
         <div className="flex flex-col gap-5 m-3">
             <div className="flex w-full justify-between rounded-md">

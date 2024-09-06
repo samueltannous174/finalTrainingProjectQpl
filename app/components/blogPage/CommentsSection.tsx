@@ -14,7 +14,6 @@ export const meta: MetaFunction = () => {
 
 export default function CommentsSection() {
     const data=useLoaderData()
-    const userExists=!!data.user
     const user=data.user
     console.log(user)
     const [createdAt] = useState(format(new Date(), "yyyy-MM-dd' T ' HH:mm:ss"));
@@ -74,11 +73,7 @@ export default function CommentsSection() {
                 </Form>
             </div>
             {data.blog.comments.map((comment)=>{
-               return <CommentComponent
-                   userExists={userExists}
-                   commentData={comment}
-                   user={user}
-               />
+               return <CommentComponent key={comment.id} commentData={comment}/>
             } )}
         </div>
     );

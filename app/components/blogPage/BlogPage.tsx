@@ -31,7 +31,7 @@ interface Blog {
 
 interface BlogPageProps {
     blogData?: Blog;
-    content: string;
+    content?: string;
 }
 
 function BlogPage({ blogData, content  }: BlogPageProps) {

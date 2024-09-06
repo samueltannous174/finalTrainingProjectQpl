@@ -11,12 +11,8 @@ export default function ExperienceCard({ experienceData }: { experienceData: Dat
     const { theme } = useTheme();
 
     return (
-        <main
-            className={`flex justify-around w-[80%] p-5 md:p-0 md:space-x-10 rounded-lg flex-wrap ${
-                theme === 'dark' ? 'bg-slate-700 text-white' : 'bg-gray-100 text-gray-900'
-            }`}
-        >
-            <h2 className={`text-${theme === 'dark' ? 'green-400' : 'green-600'} md:mt-[10px]`}>
+        <main className={`flex justify-around max-w-[90%] sm:w-[80%] p-7 md:p-2 md:space-x-10 rounded-lg flex-wrap ${theme === 'dark' ? 'bg-slate-700 text-white' : 'bg-gray-100 text-gray-900'}`}>
+            <h2 className={`text-green-500 md:mt-[10px]`}>
                 UPWORK
             </h2>
             <div className="flex flex-col">
@@ -25,10 +21,7 @@ export default function ExperienceCard({ experienceData }: { experienceData: Dat
                 </h1>
                 <ul className="p-5 box-border">
                     {experienceData.description.map((item, index) => (
-                        <li
-                            key={index}
-                            className={`text-${theme === 'dark' ? 'gray-400' : 'gray-700'} text-[20px] xl:w-[400px] break-words`}
-                        >
+                        <li key={index} className={`text-${theme === 'dark' ? 'gray-400' : 'gray-700'} text-[20px] xl:w-[400px] break-words`}>
                             {item}
                         </li>
                     ))}

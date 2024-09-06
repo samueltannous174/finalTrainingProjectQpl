@@ -12,15 +12,14 @@ interface ThemeProviderProps {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-    const [theme, setTheme] = useState<string>('light');
+    const [theme, setTheme] = useState<string>('dark');
     const [isClient, setIsClient] = useState<boolean>(false);
 
     useEffect(() => {
         setIsClient(true);
-        const storedTheme = localStorage.getItem('theme') || 'light';
+        const storedTheme = localStorage.getItem('theme') || 'dark' ;
         setTheme(storedTheme);
     }, []);
-
     const toggleTheme = () => {
         const newTheme = theme === 'light' ? 'dark' : 'light';
         setTheme(newTheme);

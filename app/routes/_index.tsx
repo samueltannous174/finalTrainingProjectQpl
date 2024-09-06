@@ -5,34 +5,31 @@
  import Skills from "~/components/landingPage/Skills/Skills";
  import Experience from "~/components/landingPage/Experience/Experience";
  import Footer from "~/components/landingPage/Footer/Footer";
- import {useThemesContext} from "react-admin";
  import {useTheme} from "~/components/ThemeContext/ThemeContext";
-
 
 
     export const meta: MetaFunction = () => {
         return [
             { title: "Home" },
-            { name: "description", content: "hello" },
+            { name: "description", content: "landing page samuel" },
         ];
     };
 
     export default function Index() {
+
         const { theme } = useTheme();
         return (
-            <main className={` ${theme === 'dark' ? 'bg-gray-900 ' : 'bg-blue-50 '} `}
-            >
-                <div className="flex flex-col items-center justify-center " >
-                    <div className="mt-[60px] " >
+            <main className={` ${theme === 'dark' ? 'bg-gray-900 ' : 'bg-blue-50 '} `}>
+                <div className=" flex flex-col items-center justify-center" >
                         <Bio/>
                         <AboutMe/>
                         <Skills/>
                         <Experience/>
                         <Footer/>
                     </div>
-                </div>
             </main>
         );
     }
+
 
 

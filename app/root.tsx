@@ -10,25 +10,14 @@ import {
 import "./tailwind.css";
 
 import { ThemeProvider } from '../app/components/ThemeContext/ThemeContext';
-
-
-
-
-import {LinksFunction, MetaFunction} from "@remix-run/node";
+import {json, LinksFunction} from "@remix-run/node";
 import Header from "~/components/Header/Header";
-import {getUserFromSession} from "~/server/authData";
+import {getUserIdFromSession} from "~/server/authData";
 import {getUserById} from "~/server/dataBaseData";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
 };
-export const meta: MetaFunction = () => {
-    return [
-        { title: "New Remix App" },
-        { name: "description", content: "Welcome to Remix!" },
-    ];
-};
-
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -41,13 +30,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
           <title> remix</title>
-
       </head>
       <body>
       <ThemeProvider>
-
           <Header/>
-
       <div className="mt-[40px]">
           {children}
       </div>
@@ -88,8 +74,10 @@ export function ErrorBoundary() {
 export default function App() {
   return <Outlet />;
 }
+
 export async function  loader({ request }) {
-    const userId= await getUserFromSession(request);
-    return getUserById(userId)
+    const userId= await getUserIdFromSession(request);
+    const user = await getUserById(userId)
+    return json(user)
 }
 

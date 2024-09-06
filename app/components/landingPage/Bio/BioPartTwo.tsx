@@ -5,7 +5,7 @@ export default function BioPartTwo() {
 
     return (
         <>
-            <main   >
+            <main>
                 <div className=" flex items-center justify-center ">
                     <img
                         src="https://scontent.fjrs4-1.fna.fbcdn.net/v/t39.30808-6/342849858_769379387980558_1898589403332030529_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=a2NNJtWaTRQQ7kNvgFJuPYS&_nc_ht=scontent.fjrs4-1.fna&oh=00_AYBgw8odylKVQjZie1rO9xwMag-YgH_cWwlesv0gPP0lqw&oe=66DE0DC7"
@@ -14,8 +14,6 @@ export default function BioPartTwo() {
                     />
                 </div>
             </main>
-
-
         </>
     )
 }

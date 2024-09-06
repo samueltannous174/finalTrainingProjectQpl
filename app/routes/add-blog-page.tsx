@@ -42,9 +42,7 @@ type Blog = {
     authorId: number;
 };
 
-export async function loader({request}){
-    return  requireUserSession(request)
-}
+
 export async function action({ request }) {
     const formData = await request.formData();
     const userId= await requireUserSession(request)

@@ -7,9 +7,9 @@ export default function AllBlogsPage() {
     const { theme } = useTheme();
 
     return (
-        <div className={`min-w-[420px] ${theme === 'dark' ? 'bg-[#020b21]' : 'bg-blue-100'}`}>
+        <main className={`min-w-[420px] ${theme === 'dark' ? 'bg-[#020b21]' : 'bg-blue-100'}`}>
             <BlogsContainer />
-        </div>
+        </main>
     );
 }
 

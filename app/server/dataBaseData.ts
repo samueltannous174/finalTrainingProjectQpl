@@ -46,7 +46,6 @@ export async function getBlogsById(blogId) {
                 },
             },
         });
-
         return blog;
     } catch (error) {
         console.log(error);

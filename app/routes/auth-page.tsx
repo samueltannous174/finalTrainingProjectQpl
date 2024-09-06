@@ -1,6 +1,6 @@
 import AuthForm from "~/components/Auth/AuthForm";
 import '.././index.css'
-import {getUserFromSession, login, signup} from "~/server/authData";
+import {getUserIdFromSession, login, signup} from "~/server/authData";
 function AuthPage() {
 
     return (
@@ -40,5 +40,5 @@ export async function action({request}) {
 export default AuthPage;
 
 export function loader({request}) {
-    return getUserFromSession(request);
+    return getUserIdFromSession(request);
 }

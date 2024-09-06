@@ -4,9 +4,8 @@ export default function AboutMePartOne() {
     const {theme} = useTheme()
 
     return (
-        <>
-            <main   >
-                <div className=" box-border flex flex-col items-center lg:items-start  md:pl-[90px] pt-[27px]  h-full mx-auto ">
+            <main>
+                <div className=" box-border flex flex-col items-center lg:items-start  md:pl-[60px] pt-[27px]  h-full mx-auto ">
                     <img
                         src="https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         alt="myPic"
@@ -14,8 +13,5 @@ export default function AboutMePartOne() {
                     />
                 </div>
             </main>
-
-
-        </>
     )
 }

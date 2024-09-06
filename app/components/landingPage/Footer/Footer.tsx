@@ -3,17 +3,16 @@ import {useTheme} from "~/components/ThemeContext/ThemeContext";
 export default function Footer() {
     const { theme } = useTheme();
     return (
-        <main    className={`flex flex-col items-center mx-auto p-10 space-y-10 box-border ${
-            theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-blue-50 text-gray-900'
-        }`}>
-        <div className={`${ theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-blue-50 text-gray-900'} flex flex-col items-center mx-auto p-10 space-y-10  box-border`}>
+        <main    className={`flex flex-col items-center mx-auto p-5 space-y-10 box-border ${
+            theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-blue-50 text-gray-900'}`}>
+        <div className={`${ theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-blue-50 text-gray-900'} flex flex-col items-center mx-auto p-5 space-y-10  box-border`}>
             <div className="flex justify-center items-center">
                 <button className="bg-gray-500 text-white py-3 px-8 rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
                     Get In Touch
                 </button>
             </div>
 
-            <p className="break-words text-[20px]  max-w-[50%]">
+            <p className="break-words text-[20px] max-w-[80%] sm:max-w-[50%]">
                 What’s next? Feel free to reach out to me if you're looking for a developer, have a query, or simply want to connect.
             </p>
 
