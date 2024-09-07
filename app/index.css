@@ -1,19 +1,149 @@
 .no-cursor{
     caret-color: transparent;
 }
+h1{
+        caret-color: transparent;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+        align-self: center;
+}
+
+button{
+    caret-color: transparent;
+}
+p{
+    caret-color: transparent;
+}
+img{
+    caret-color: transparent;
+}
 .custom-width {
     width: 100vw;}
-.boxShadow{
-    box-shadow: 20px 10px rgba(187, 234, 245, 0.13);
+.box-shadow{
+    box-shadow: 15px 15px rgba(187, 250, 245, 0.13);
 }
-.boxShadowHeader{
+
+.box-shadow-black{
+    box-shadow: 15px 15px rgba(105, 108, 108, 0.45);
+}
+
+.box-shadow-about-me{
+    box-shadow: -40px 20px rgba(187, 234, 245, 0.13);
+}
+.box-shadow-about-me-Black{
+    box-shadow: -40px 20px rgba(9, 13, 14, 0.24);
+}
+.box-shadow-header{
     box-shadow: 1px 5px rgba(26, 61, 59, 0.3);
 }
+
 @media  (max-width: 800px) {
-    .boxShadow{
+    .box-shadow{
         box-shadow: 10px 10px rgba(165, 231, 243, 0.19), -10px 10px rgba(165, 231, 243, 0.19);
-    }}
+    }
+}
+@media  (max-width: 1100px) {
+    .box-shadow-about-me{
+        box-shadow: 10px 10px rgba(165, 231, 243, 0.19), -10px 10px rgba(165, 231, 243, 0.19);
+    }
+}
+
+
+body{
+    background: #4c97ad;
+
+}
+.auth-form{
+    background: #2e3d4b;
+    height: 100vh;
+}
+.ql-toolbar.ql-snow{
+    background: lightblue;
+    overflow: auto;
+}
+
+.ql-editor{
+    height: auto;
+}
+.ql-container.ql-snow{
+    height: 500px;
+    overflow: auto;
+}
+ul {
+    list-style-type: disc;
+}
+
+ol {
+    list-style-type: decimal;
+    margin: 1em 0;
+}
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+    font-weight: bold;
+}
+p {
+    font-size: 13px;
+    font-family: Helvetica, Arial, sans-serif;
+}
 
 
 
+/*@media  (max-width: 767px) {*/
+/*    .ql-editor-width {*/
+/*        max-width: 300px;*/
+/*    }*/
+/*    .ql-editor {*/
+/*        height: 400px;*/
+/*    }*/
+/*    .ql-container{*/
+/*        height: 400px;*/
+/*    }*/
+/*  }*/
 
+.ql-size-large{
+    font-size: 23px;
+    align-self: center;
+}
+.new{
+        background: #1a2e33;
+}
+
+@container (max-height: 800px) {
+    .blog-page {
+      height: 3500px;
+    }
+}
+.container {
+    container-type: inline-size;
+}

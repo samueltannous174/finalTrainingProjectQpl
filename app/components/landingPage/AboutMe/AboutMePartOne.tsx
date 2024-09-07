@@ -1,21 +1,17 @@
+import {useTheme} from "~/components/ThemeContext/ThemeContext";
 
 export default function AboutMePartOne() {
+    const {theme} = useTheme()
+
     return (
-        <main >
-            {/*<p>*/}
-            {/*    I'm a passionate, self-proclaimed designer who specializes in full stack development (React.js & Node.js). I am very enthusiastic about bringing the technical and visual aspects of digital products to life. User experience, pixel perfect design, and writing clear, readable, highly performant code matters to me.*/}
-            {/*    I began my journey as a web developer in 2015, and since then, I've continued to grow and evolve as a developer, taking on new challenges and learning the latest technologies along the way. Now, in my early thirties, 7 years after starting my web development journey, I'm building cutting-edge web applications using modern technologies such as Next.js, TypeScript, Nestjs, Tailwindcss, Supabase and much more.*/}
-            {/*    I am very much a progressive thinker and enjoy working on products end to end, from ideation all the way to development.*/}
-            {/*    When I'm not in full-on developer mode, you can find me hovering around on twitter or on indie hacker, witnessing the journey of early startups or enjoying some free time. You can follow me on Twitter where I share tech-related bites and build in public, or you can follow me on GitHub.*/}
-            {/*    Finally, some quick bits about me.*/}
-            {/*    B.E. in Computer Engineering*/}
-            {/*    Avid learner*/}
-            {/*    Full time freelancer*/}
-            {/*    Aspiring indie hacker*/}
-            {/*    One last thing, I'm available for freelance work, so feel free to reach out and say hello! I promise I don't bite 😉*/}
-            {/*</p>*/}
-
-        </main>
-
-    );
+            <main>
+                <div className=" box-border flex flex-col items-center lg:items-start  md:pl-[60px] pt-[27px]  h-full mx-auto ">
+                    <img
+                        src="https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        alt="myPic"
+                        className={` ${theme === 'dark' ?  'box-shadow-about-me':'box-shadow-about-me-Black' }  box-shadow-about-me lg:h-1/3 xl:h-[400px] xl:w-[370px]  lg:w-[300px] shadow-gray-300 w-3/4 h-[400px]  `}
+                    />
+                </div>
+            </main>
+    )
 }
