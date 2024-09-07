@@ -1,28 +1,23 @@
 import AuthForm from "~/components/Auth/AuthForm";
 import '.././index.css'
 import {getUserIdFromSession, login, signup} from "~/server/authData";
+import {User} from "~/types";
 function AuthPage() {
 
     return (
-        <div className="flex flex-col justify-center gap-4 items-center bg-indigo-950 authForm h-[740px]">
+        <div className="flex flex-col justify-center gap-4 items-center bg-indigo-950 authForm min-h-screen ">
             <AuthForm/>
         </div>
 
     );
 }
-type Form = {
-        id: number
-        email:string;
-        password:string
-        name:string
-        image:string
-}
+
 
 export async function action({request}) {
     const searchParams = new URL(request.url).searchParams;
     const authMode = searchParams.get('mode') || 'login';
     const formData = await request.formData();
-    const credentials = Object.fromEntries(formData) as Form
+    const credentials = Object.fromEntries(formData) as User
 
     try {
         if (authMode === 'login') {

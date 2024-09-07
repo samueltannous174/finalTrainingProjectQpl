@@ -11,8 +11,8 @@ export default function AllBlogsPageId() {
     const { theme } = useTheme();
 
     return (
-        <main className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-blue-50'}`}>
-            <BlogPage blogData={data.blog}/>
+        <main className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-blue-50'} `}>
+            <BlogPage blogData={data.blog} content=""/>
         </main>
     );
 }
@@ -35,9 +35,7 @@ export const action = async ({ request }: { request: Request }) => {
         blogId: parseInt(commentsData.blogId as string, 10),
         authorId: parseInt(commentsData.authorId as string, 10)
     }
-    try {
-        return  addComment(updatedComment)
-    }catch (error){
-        console.log(error)
-    }
+    await  addComment(updatedComment)
+    return json({ message: ' successfully ' }, { status: 200 });
+
 };

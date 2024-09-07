@@ -1,26 +1,14 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "@remix-run/react";
 import {useTheme} from "~/components/ThemeContext/ThemeContext";
-import {  User } from '@prisma/client';
+import {Blog} from "~/types";
 
-type User = {
-    id: number;
-    email: string;
-    password: string;
-    name: string;
-    image: string;
-};
 
-interface BlogWithAuthorDetails{
-    id: number;
-    title: string;
-    paragraph: string;
-    image: string;
-    author: User;
-}
+
+
 
 interface BlogCardProps {
-    blog: BlogWithAuthorDetails;
+    blog: Blog;
 }
 
 export default function BlogCard({ blog }: BlogCardProps) {
@@ -45,7 +33,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
             </section>
             <section className={`flex flex-col justify-around items-center ${theme === 'dark' ? 'bg-gray-800' : 'bg-slate-400'} h-[400px]`}>
                 <nav className="flex space-x-6">
-                    <Link className={`text-blue-50 hover:bg-cyan-900 select-none px-12 py-5 text-xl ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`}>
+                    <Link className={`text-blue-50 hover:bg-cyan-900 select-none px-12 py-5 text-xl ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`} to="./">
                         About
                     </Link>
                 </nav>

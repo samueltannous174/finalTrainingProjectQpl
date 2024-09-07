@@ -1,8 +1,6 @@
     import {useEffect} from 'react'
     import {useQuill} from "react-quilljs";
 
-
-
     interface Props{
         defaultValue?: string
         setContent: (content:string) => void;
@@ -16,7 +14,6 @@
                 quill.on('text-change', () => {
                     const newContent = quill.root.innerHTML;
                     setContent(newContent);
-                    console.log(newContent)
                   setContent(newContent)
                 });
             }

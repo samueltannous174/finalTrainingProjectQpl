@@ -1,3 +1,7 @@
+body{
+    height: 100vh;
+}
+
 .no-cursor{
     caret-color: transparent;
 }
@@ -29,7 +33,7 @@ img{
 }
 
 .box-shadow-about-me{
-    box-shadow: -40px 20px rgba(187, 234, 245, 0.13);
+    box-shadow: -40px 20px rgba(9, 13, 14, 0.24);
 }
 .box-shadow-about-me-Black{
     box-shadow: -40px 20px rgba(9, 13, 14, 0.24);
@@ -66,7 +70,7 @@ body{
     height: auto;
 }
 .ql-container.ql-snow{
-    height: 500px;
+    height: 400px;
     overflow: auto;
 }
 ul {
@@ -118,17 +122,7 @@ p {
 
 
 
-/*@media  (max-width: 767px) {*/
-/*    .ql-editor-width {*/
-/*        max-width: 300px;*/
-/*    }*/
-/*    .ql-editor {*/
-/*        height: 400px;*/
-/*    }*/
-/*    .ql-container{*/
-/*        height: 400px;*/
-/*    }*/
-/*  }*/
+
 
 .ql-size-large{
     font-size: 23px;

@@ -1,6 +1,5 @@
 import {Form, useActionData, useNavigation} from "@remix-run/react";
 
-
 type Props={
     content: string
     setIsAddFormClicked: (bol: (prev) => boolean) => void;

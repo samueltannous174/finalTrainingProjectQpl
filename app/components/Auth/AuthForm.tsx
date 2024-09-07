@@ -35,7 +35,7 @@ function AuthForm() {
 
     const isSubmitting = navigation.state !== 'idle';
     const isButtonDisabled = isSubmitting || emailError.length > 0 || passwordError.length > 0;
-    const containerClassName = `max-w-md mt-[40px] mx-auto bg-cyan-950 p-8 rounded-lg shadow-lg ${
+    const containerClassName = `max-w-md mt-[40px] mx-auto bg-cyan-950 p-8 rounded-lg shadow-lg  ${
         authMode === 'signup' ? 'lg:w-[25%]' : ''
     }`;
     return (

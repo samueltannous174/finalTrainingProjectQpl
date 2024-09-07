@@ -6,13 +6,14 @@ import {useTheme} from "~/components/ThemeContext/ThemeContext";
 import {AddBlogPartOne} from "~/components/addBlogPage/AddBlogPartOne";
 import {AddBlogPartTwo} from "~/components/addBlogPage/AddBlogPartTwo";
 import {useState} from "react";
+import {Blog} from "~/types";
 
 export default function AddBlogPage() {
     const [content,setContent]=useState("")
     const { theme } = useTheme();
 
     return (
-        <main className={`grid grid-cols-1 md:min-h-[900px] ${theme === 'dark' ? 'bg-gray-900' : 'bg-blue-50'}`}>
+        <main className={`grid grid-cols-1 md:min-h-[900px] ${theme === 'dark' ? 'bg-gray-900' : 'bg-blue-50'} h-full mt-[40px]`}>
                 <AddBlogPartOne content={content} setContent={setContent}/>
                 <AddBlogPartTwo content={content}/>
         </main>
@@ -20,12 +21,7 @@ export default function AddBlogPage() {
 }
 
 
-type Blog = {
-    title: string;
-    paragraph: string;
-    image: string;
-    authorId: number;
-};
+
 
 export async function loader({request}){
     await requireUserSession(request)
@@ -34,7 +30,6 @@ export async function loader({request}){
 
 
 export async function action({ request }) {
-    console.lg("hello 99")
     const formData = await request.formData();
     const userId= await requireUserSession(request)
     const blogData = Object.fromEntries(formData) as Blog;

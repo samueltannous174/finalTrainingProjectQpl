@@ -14,9 +14,8 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-    const getDefaultTheme = () => localStorage.getItem('theme') || 'dark';
 
-    const [theme, setTheme] = useState<string>(getDefaultTheme);
+    const [theme, setTheme] = useState<string>('dark');
     const [isClient, setIsClient] = useState<boolean>(false);
 
     useEffect(() => {
@@ -30,11 +29,6 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
         if (isClient) {
             localStorage.setItem('theme', newTheme);
-            if (newTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-            }
         }
     };
 

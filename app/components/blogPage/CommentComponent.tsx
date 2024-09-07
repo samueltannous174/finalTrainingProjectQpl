@@ -1,18 +1,5 @@
-type User={
-    id:number;
-    email:string;
-    password:string;
-    name:string;
-    image:string;
-}
-type Comment={
-    content: string;
-    createdAt: number;
-    blogId: number;
-    authorId:number;
-    author: User
-}
 
+import {Comment} from "~/types"
 type CommentComponentProps={
     commentData:Comment
     key:number

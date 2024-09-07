@@ -14,7 +14,7 @@ export function AddBlogPartOne({ content, setContent }: Props) {
     return (
             <section className="flex flex-col bg-sky-900 items-center space-y-1 justify-center md:fixed">
                 {MemoizedAddBlogForm}
-                <div className="bg-sky-900 flex justify-center">
+                <div className="bg-sky-900 flex justify-center ">
                     <QuillComponent setContent={setContent} />
                 </div>
             </section>

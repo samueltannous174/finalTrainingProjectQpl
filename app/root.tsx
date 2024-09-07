@@ -9,7 +9,7 @@ import {
 } from "@remix-run/react";
 import "./tailwind.css";
 
-import { ThemeProvider } from '../app/components/ThemeContext/ThemeContext';
+import { ThemeProvider } from '~/components/ThemeContext/ThemeContext';
 import {json, LinksFunction} from "@remix-run/node";
 import Header from "~/components/Header/Header";
 import {getUserIdFromSession} from "~/server/authData";
@@ -34,7 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
       <ThemeProvider>
           <Header/>
-      <div className="mt-[40px]">
+      <div>
           {children}
       </div>
       </ThemeProvider>
@@ -47,7 +47,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export function ErrorBoundary() {
-    const error = useRouteError();
+        const error = useRouteError();
 
     if (isRouteErrorResponse(error)) {
         return (

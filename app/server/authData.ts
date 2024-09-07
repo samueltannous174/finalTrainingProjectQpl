@@ -2,55 +2,40 @@ import {hash} from "@vanilla-extract/integration";
 import process from "process";
 import {createCookieSessionStorage, redirect} from "@remix-run/node";
 import {prisma} from './dataBaseData'
-type Credentials={
-    id:number;
-    email:string;
-    password:string;
-    name:string;
-    image:string;
-}
+import {CredentialsLogin, User,} from "~/types";
 
-export async function signup({ email, password , name,image }: Credentials) {
+
+export async function signup({ email, password , name,image }: User ) {
     const existingUser = await prisma.user.findFirst({ where: { email } });
     const existingAuthor = await prisma.user.findFirst({ where: { name } });
-    console.log("signup")
     if (existingAuthor) {
-        const newError= new Error("Could not complete, the user already exists.")
-        throw newError;
+        throw new Error("Could not complete, the user already exists.");
     }
     if (existingUser) {
-        const newError= new Error("Could not complete, the email already exists.")
-        throw newError;
+        throw new Error("Could not complete, the email already exists.");
     }
 
     const passwordHash =  hash(password);
 
-    const user=await prisma.user.create({ data: { email: email, password: passwordHash,name:name,image:image }}) as Credentials ;
+    const user=await prisma.user.create({ data: { email: email, password: passwordHash,name:name,image:image }}) as User ;
     console.log("created user")
     return createUserSession(user.id, '/');
 
-}
-type CredentialsLogin={
-    id: number
-    email:string;
-    password:string;
 }
 
 export async function login({ email, password }) {
     const existingUser = await prisma.user.findFirst({where: {email}}) as CredentialsLogin;
     if (!existingUser) {
-        const error = new Error(
+        throw new Error(
             'Could not log you in, please check the provided email.'
         );
-        throw error;
     }
 
     const passwordCorrect = hash(password)=== existingUser.password
     if (!passwordCorrect) {
-        const error = new Error(
+        throw new Error(
             'Could not log you in, please check the provided password.'
         );
-        throw error;
     }
     return  createUserSession(existingUser.id,'/')
 }

@@ -16,10 +16,9 @@
     };
 
     export default function Index() {
-
         const { theme } = useTheme();
         return (
-            <main className={` ${theme === 'dark' ? 'bg-gray-900 ' : 'bg-blue-50 '} `}>
+            <main className={` ${theme === 'dark' ? 'bg-gray-900 ' : 'bg-blue-50 '} mt-[40px] `}>
                 <div className=" flex flex-col items-center justify-center" >
                         <Bio/>
                         <AboutMe/>
