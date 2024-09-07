@@ -17,7 +17,7 @@ function BlogPage({ blogData, content  }: BlogPageProps) {
     const [searchParams] = useSearchParams();
     const mode = searchParams.get('mode');
     return (
-        <main className="box-border mx-auto justify-center flex flex-col   ">
+        <main className="box-border mx-auto justify-center flex flex-col min-h-screen">
             <section className="flex flex-col space-y-36 p-4 md:p-0 mx-auto">
                 {mode === 'add' ? (
                     <p className={`text-lg text-black-400 leading-relaxed mb-4 break-words flex-wrap max-w-[298px] lg:max-w-[398px] xl:max-w-[598px] text-[13px] md:max-w-[298px]`}>

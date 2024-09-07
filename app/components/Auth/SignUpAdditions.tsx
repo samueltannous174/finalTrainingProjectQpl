@@ -1,62 +1,78 @@
-import {useAuthForm} from "~/components/Auth/UseAuth";
+import {useState} from "react";
 
-function SignUpAdditions() {
+type Props = {
+    password: string;
+    onConfirmPasswordErrorChange: (error: string) => void;
+};
 
-    const {
-        password,
-        passwordError,
-        handlePasswordChange,
-        handlePasswordBlur,
-    } = useAuthForm();
+function SignUpAdditions({ password, onConfirmPasswordErrorChange }: Props) {
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
+
+    const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setConfirmPassword(value);
+
+        if (value !== password) {
+            const error = 'Passwords do not match';
+            setConfirmPasswordError(error);
+            onConfirmPasswordErrorChange(error);
+        } else {
+            setConfirmPasswordError('');
+            onConfirmPasswordErrorChange('');
+        }
+    };
+
+    const handleConfirmPasswordBlur = () => {
+        if (confirmPassword !== password) {
+            const error = 'Passwords do not match';
+            setConfirmPasswordError(error);
+            onConfirmPasswordErrorChange(error);
+        } else {
+            setConfirmPasswordError('');
+            onConfirmPasswordErrorChange('');
+        }
+    };
 
     return (
-
         <div className="flex flex-col">
-
-            <label htmlFor="password" className="block text-sm font-medium text-white mt-4">
-                confirm Password
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-white mt-4">
+                Confirm Password
             </label>
             <input
                 type="password"
-                id="password"
-                name="password"
-                value={password}
-                onChange={handlePasswordChange}
-                onBlur={handlePasswordBlur}
+                id="confirmPassword"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                onBlur={handleConfirmPasswordBlur}
                 required
                 className={`mt-1 block w-full px-3 py-2 border ${
-                    passwordError ? 'border-red-500' : 'border-gray-300'
+                    confirmPasswordError ? 'border-red-500' : 'border-gray-300'
                 } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
             />
-            {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
+            {confirmPasswordError && <p className="text-red-500 text-sm mt-1">{confirmPasswordError}</p>}
 
-            <label htmlFor="password" className="block text-sm font-medium text-white mt-4">
-                Username/Author:
+            <label htmlFor="username" className="block text-sm font-medium text-white mt-4">
+                Username/Author
             </label>
             <input
                 id="name"
                 name="name"
                 required
-                className={`mt-1 block w-full px-3 py-1 border ${
-                    passwordError ? 'border-red-500' : 'border-gray-300'
-                } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
 
-
-            <label htmlFor="password" className="block text-sm font-medium text-white mt-4">
-                User Image (Url)
+            <label htmlFor="image" className="block text-sm font-medium text-white mt-4">
+                User Image (URL)
             </label>
             <input
                 id="image"
                 name="image"
                 required
-                className={`mt-1 block w-full px-3 py-2 border ${
-                    passwordError ? 'border-red-500' : 'border-gray-300'
-                } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
-
         </div>
-
     );
 }
 

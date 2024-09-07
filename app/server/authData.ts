@@ -7,6 +7,7 @@ import {CredentialsLogin, User,} from "~/types";
 
 export async function signup({ email, password , name,image }: User ) {
     const existingUser = await prisma.user.findFirst({ where: { email } });
+    console.log("s      "+ existingUser)
     const existingAuthor = await prisma.user.findFirst({ where: { name } });
     if (existingAuthor) {
         throw new Error("Could not complete, the user already exists.");
