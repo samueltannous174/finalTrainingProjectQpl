@@ -20,7 +20,7 @@ type Comment={
     authorId:number;
 }
 
-interface Blog {
+type Blog= {
     title: string;
     paragraph: string;
     image: string;
@@ -31,7 +31,7 @@ interface Blog {
 
 interface BlogPageProps {
     blogData?: Blog;
-    content?: string;
+    content?: string | undefined;
 }
 
 function BlogPage({ blogData, content  }: BlogPageProps) {
@@ -39,7 +39,7 @@ function BlogPage({ blogData, content  }: BlogPageProps) {
     const mode = searchParams.get('mode');
     return (
         <main className="box-border mx-auto justify-center flex flex-col   ">
-            <section className="flex flex-col space-y-36 p-4 md:p-0 ">
+            <section className="flex flex-col space-y-36 p-4 md:p-0 mx-auto">
                 {mode === 'add' ? (
                     <p className={`text-lg text-black-400 leading-relaxed mb-4 break-words flex-wrap max-w-[268px] lg:max-w-[368px] xl:max-w-[568px] text-[13px] md:max-w-[268px]`}>
                         <ClientOnly>

@@ -11,8 +11,12 @@ interface ThemeProviderProps {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+
+
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-    const [theme, setTheme] = useState<string>('dark');
+    const getDefaultTheme = () => localStorage.getItem('theme') || 'dark';
+
+    const [theme, setTheme] = useState<string>(getDefaultTheme);
     const [isClient, setIsClient] = useState<boolean>(false);
 
     useEffect(() => {
@@ -46,7 +50,6 @@ export const useTheme = (): ThemeContextType => {
     if (!context) {
         throw new Error('useTheme must be used within a ThemeProvider');
     }
-    console.log(context)
     return context;
 };
 

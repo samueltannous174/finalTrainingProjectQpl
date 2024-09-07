@@ -16,7 +16,6 @@ export default function AllBlogsPageId() {
         </main>
     );
 }
-
 export async function loader({ params, request }) {
     const blog = await getBlogsById(params.id);
     const currentLoggedUserId = await getUserIdFromSession(request);
@@ -26,6 +25,7 @@ export async function loader({ params, request }) {
         }
     return json({ blog });  // if no current user logged in don't add
 }
+
 
 export const action = async ({ request }: { request: Request }) => {
     const commentFormData = await request.formData();

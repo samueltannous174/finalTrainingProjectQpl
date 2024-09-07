@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "@remix-run/react";
 import {useTheme} from "~/components/ThemeContext/ThemeContext";
+import {  User } from '@prisma/client';
 
 type User = {
     id: number;

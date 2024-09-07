@@ -1,12 +1,17 @@
 import {Form, useActionData, useNavigation} from "@remix-run/react";
-export default function AddBlogForm({content}:string ) {
+
+
+type Props={
+    content: string
+    setIsAddFormClicked: (bol: (prev) => boolean) => void;
+}
+
+export default function AddBlogForm({content, setIsAddFormClicked}:Props ) {
     const navigation = useNavigation();
-    const isSubmitting = navigation.state !== 'idle';
+    const isSubmitting = navigation.state !== 'idle';  // when submitting and navigation
     const errors=useActionData()
-
-
     return (
-        <>          <Form method="post" className=" flex flex-col bg-sky-900 items-center space-y-1 justify-center mt-3 ">
+        <>          <Form method="post" className=" flex flex-col bg-sky-900 items-center space-y-1 justify-center mt-3  "     onClick={() => setIsAddFormClicked(prev => !prev)}>
                 {errors &&  <div className=" text-[14px] text-red-600 flex gap-4  ">
                     {errors.map((error,index)=> {
                           return ( <div key={index}>
@@ -48,7 +53,7 @@ export default function AddBlogForm({content}:string ) {
                 } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
                 disabled={isSubmitting}
             >
-                {isSubmitting ? 'Adding....' : 'Add Blog'}
+                {isSubmitting ? '.........' : 'Add Blog'}
             </button>
 
         </Form>

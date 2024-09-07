@@ -60,7 +60,6 @@ body{
 }
 .ql-toolbar.ql-snow{
     background: lightblue;
-    overflow: auto;
 }
 
 .ql-editor{
