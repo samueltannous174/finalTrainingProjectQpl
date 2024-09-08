@@ -39,6 +39,7 @@ export function ErrorBoundary() {
         return <div>Oops</div>;
     }
 }
+
 export const meta: MetaFunction = () => {
     return [
         { title: "Blog Pages" },
