@@ -1,9 +1,7 @@
 import HeaderItems from "~/components/Header/HeaderItems";
 import SideBar from "./SideBar";
 import { useTheme } from '../ThemeContext/ThemeContext';
-import {getUserIdFromSession} from "~/server/authData";
-import {getUserById} from "~/server/dataBaseData";
-
+import {MetaFunction} from "@remix-run/node";
 
 export default function Header() {
     const { theme } = useTheme();
@@ -21,7 +19,13 @@ export default function Header() {
     );
 }
 
-
+export const meta: MetaFunction = (matches) => {
+    console.log(matches)
+    return [
+        { title: "Home" },
+        { name: "description", content: "landing page samuel" },
+    ];
+};
 
 
 

@@ -1,6 +1,6 @@
 import BlogsContainer from "../components/allBlogsPage/blogsContainer";
 import { getBlogs } from "~/server/dataBaseData";
-import { json } from "@remix-run/node";
+import {json, MetaFunction} from "@remix-run/node";
 import {useTheme} from "~/components/ThemeContext/ThemeContext";
 import {isRouteErrorResponse, useRouteError} from "@remix-run/react";
 
@@ -39,3 +39,9 @@ export function ErrorBoundary() {
         return <div>Oops</div>;
     }
 }
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Blog Pages" },
+        { name: "description", content: "blog pages" },
+    ];
+};

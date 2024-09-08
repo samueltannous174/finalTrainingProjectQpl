@@ -2,7 +2,7 @@ import {useLoaderData} from "react-router";
 import BlogPage from "~/components/blogPage/BlogPage";
 import {addComment, getBlogsById, getUserById} from "~/server/dataBaseData";
 import {getUserIdFromSession} from "~/server/authData";
-import {json} from "@remix-run/node";
+import {json, MetaFunction} from "@remix-run/node";
 import {useTheme} from "~/components/ThemeContext/ThemeContext";
 
 
@@ -39,3 +39,11 @@ export const action = async ({ request }: { request: Request }) => {
     return json({ message: ' successfully ' }, { status: 200 });
 
 };
+export const meta: MetaFunction = (meta) => {
+    return [
+        { title: meta.data.blog.title },
+        { name: "description", content: "blog page details" },
+    ];
+};
+
+export const handle = { disableJS: true };

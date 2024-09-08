@@ -2,6 +2,7 @@ import AuthForm from "~/components/Auth/AuthForm";
 import '.././index.css'
 import {getUserIdFromSession, login, signup} from "~/server/authData";
 import {User} from "~/types";
+import {MetaFunction} from "@remix-run/node";
 function AuthPage() {
 
     return (
@@ -11,7 +12,6 @@ function AuthPage() {
 
     );
 }
-
 
 export async function action({request}) {
     const searchParams = new URL(request.url).searchParams;
@@ -32,8 +32,16 @@ export async function action({request}) {
 }
 
 
+
 export default AuthPage;
 
 export function loader({request}) {
     return getUserIdFromSession(request);
 }
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Authentication Page " },
+        { name: "description", content: " Join Us For Free" },
+    ];
+}
+

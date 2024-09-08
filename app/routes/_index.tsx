@@ -8,12 +8,7 @@
  import {useTheme} from "~/components/ThemeContext/ThemeContext";
 
 
-    export const meta: MetaFunction = () => {
-        return [
-            { title: "Home" },
-            { name: "description", content: "landing page samuel" },
-        ];
-    };
+
 
     export default function Index() {
         const { theme } = useTheme();
@@ -30,5 +25,10 @@
         );
     }
 
-
+ export const meta: MetaFunction = () => {
+     return [
+         { title: "Home" },
+         { name: "description", content: "samuel landing page " },
+     ];
+ };
 

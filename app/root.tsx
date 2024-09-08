@@ -14,6 +14,7 @@ import {json, LinksFunction} from "@remix-run/node";
 import Header from "~/components/Header/Header";
 import {getUserIdFromSession} from "~/server/authData";
 import {getUserById} from "~/server/dataBaseData";
+import {useMatches} from "react-router";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
@@ -21,6 +22,10 @@ export const links: LinksFunction = () => {
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
+    const matches = useMatches();
+    console.log(matches)
+    const disableJS = matches.some(match => match.handle?.disableJS);
+
   return (
 
     <html lang="en">
@@ -39,7 +44,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </div>
       </ThemeProvider>
       <ScrollRestoration />
-        <Scripts />
+      {!disableJS && <Scripts />}
       </body>
     </html>
   );

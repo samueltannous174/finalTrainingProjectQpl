@@ -1,5 +1,5 @@
 import {addBlog} from "~/server/dataBaseData";
-import {json, redirect} from "@remix-run/node";
+import {json, MetaFunction, redirect} from "@remix-run/node";
 import {validate} from "~/server/addFormValidation";
 import {requireUserSession} from "~/server/authData";
 import {useTheme} from "~/components/ThemeContext/ThemeContext";
@@ -44,3 +44,9 @@ export async function action({ request }) {
 
     return redirect('/');
 }
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Add New Blog " },
+        { name: "description", content: "add your custom blog for free"}
+    ];
+};
