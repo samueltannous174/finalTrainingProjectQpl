@@ -8,15 +8,12 @@ import {
 import {useAuthForm} from "~/components/Auth/UseAuth";
 import SignUpAdditions from "~/components/Auth/SignUpAdditions";
 
-interface ValidationErrors {
-    email?: string;
-    password?: string;
-}
+
 
 function AuthForm() {
     const [searchParams] = useSearchParams();
     const navigation = useNavigation();
-    const validation = useActionData<ValidationErrors>();
+    const validation = useActionData();
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
     const {
@@ -44,7 +41,7 @@ function AuthForm() {
 
     return (
         <div className={containerClassName}>
-            {validation && <p className="text-[11px] text-red-600">{validation}</p>}
+            {validation && <p className="text-[11px] text-red-600">{validation.error}</p>}
             <h2 className="text-2xl font-bold text-center mb-6 text-white">
                 {authMode === 'login' ? 'Sign in to your account' : 'Create a new account'}
             </h2>

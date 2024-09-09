@@ -1,8 +1,8 @@
 import AuthForm from "~/components/Auth/AuthForm";
 import '.././index.css'
 import {getUserIdFromSession, login, signup} from "~/server/authData";
-import {User} from "~/types";
-import {MetaFunction} from "@remix-run/node";
+import { MetaFunction, } from "@remix-run/node";
+
 function AuthPage() {
 
     return (
@@ -13,35 +13,39 @@ function AuthPage() {
     );
 }
 
-export async function action({request}) {
-    const searchParams = new URL(request.url).searchParams;
-    const authMode = searchParams.get('mode') || 'login';
-    const formData = await request.formData();
-    const credentials = Object.fromEntries(formData) as User
-
-    try {
-        if (authMode === 'login') {
-            return await login(credentials);
-        } else {
-            return await signup(credentials);
-        }
-    } catch (error) {
-        console.log(error)
-            return error.message
-    }
-}
-
-
-
-export default AuthPage;
-
 export function loader({request}) {
     return getUserIdFromSession(request);
 }
+
+export async function action({ request }) {
+    const searchParams = new URL(request.url).searchParams;
+    const authMode = searchParams.get('mode') || 'login';
+    const formData = await request.formData();
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const image = formData.get('image');
+    const name = formData.get('name');
+
+    try {
+        if (authMode === 'login') {
+            return login(email, password)
+
+
+        } else {
+            return   signup(email,image,name,password)
+        }
+    } catch (error) {
+        console.error(error);
+        return error.message
+    }
+}
+
 export const meta: MetaFunction = () => {
     return [
         { title: "Authentication Page " },
         { name: "description", content: " Join Us For Free" },
     ];
 }
+
+export default AuthPage;
 
