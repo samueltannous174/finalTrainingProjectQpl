@@ -1,7 +1,7 @@
 import {useLoaderData} from "react-router";
 import BlogPage from "~/components/blogPage/BlogPage";
 import {addComment, getBlogsById, getUserById} from "~/server/dataBaseData";
-import {getUserIdFromSession} from "~/server/authData";
+// import {getUserIdFromSession} from "~/server/authData";
 import {json, MetaFunction} from "@remix-run/node";
 import {useTheme} from "~/components/ThemeContext/ThemeContext";
 
@@ -23,7 +23,7 @@ export async function loader({ params, request }) {
             const user = await getUserById(currentLoggedUserId);
             return json({ blog, user });
         }
-    return json({ blog });  // if no current user logged in don't add
+    return json({ blog });
 }
 
 

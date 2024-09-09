@@ -1,44 +1,54 @@
-import {hash} from "@vanilla-extract/integration";
 import process from "process";
 import {createCookieSessionStorage, redirect} from "@remix-run/node";
-import {prisma} from './dataBaseData'
-import {CredentialsLogin, User,} from "~/types";
+import {supabase} from "~/components/supabaseClient";
+import {prisma} from "~/server/dataBaseData";
 
 
-export async function signup({ email, password , name,image }: User ) {
-    const existingUser = await prisma.user.findFirst({ where: { email } });
-    console.log("s      "+ existingUser)
-    const existingAuthor = await prisma.user.findFirst({ where: { name } });
-    if (existingAuthor) {
-        throw new Error("Could not complete, the user already exists.");
+export async function signup(email,image,name, password ) {
+    const fileName = `${name}-image`;
+
+
+    const { error: uploadError } = await supabase.storage
+        .from('UsersImages')
+        .upload(fileName, image, {
+            cacheControl: '3600',
+            upsert: false,
+        })
+    if (uploadError) {
+        throw new Error(`Image upload failed: ${uploadError.message}`);
     }
-    if (existingUser) {
-        throw new Error("Could not complete, the email already exists.");
+
+    const { data , error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+    });
+    await prisma.user.create({
+        data: {
+            id: data.user?.id,
+            email: email,
+            name: name
+        }
+    });
+
+    if (signUpError) {
+        throw new Error(signUpError.message);
     }
 
-    const passwordHash =  hash(password);
-
-    const user=await prisma.user.create({ data: { email: email, password: passwordHash,name:name,image:image }}) as User ;
-    console.log("created user")
-    return createUserSession(user.id, '/');
-
+    return createUserSession(data.user?.id, '/');
 }
 
-export async function login({ email, password }) {
-    const existingUser = await prisma.user.findFirst({where: {email}}) as CredentialsLogin;
-    if (!existingUser) {
-        throw new Error(
-            'Could not log you in, please check the provided email.'
-        );
-    }
+export async function login( email, password ) {
+    console.log(email, password)
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+    });
 
-    const passwordCorrect = hash(password)=== existingUser.password
-    if (!passwordCorrect) {
-        throw new Error(
-            'Could not log you in, please check the provided password.'
-        );
+    if (error) {
+        throw new Error(error.message);
     }
-    return  createUserSession(existingUser.id,'/')
+    console.log(data.user?.id);
+    return  createUserSession(data.user?.id,'/')
 }
 
 const SESSION_SECRET = process.env.SESSION_SECRET;
@@ -61,6 +71,9 @@ async function createUserSession(userId, redirectPath) {
         },
     });
 }
+
+
+
 export async function getUserIdFromSession(request) {
     const session = await sessionStorage.getSession(
         request.headers.get('Cookie')
