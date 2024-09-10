@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
+import {useLoaderData} from "react-router";
 
 interface ThemeContextType {
     theme: string;
@@ -7,38 +8,15 @@ interface ThemeContextType {
 
 interface ThemeProviderProps {
     children: ReactNode;
-    initialTheme?: string; // Optionally accept an initial theme prop
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+    const {theme}=useLoaderData()
 
-export const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
-    const [theme, setTheme] = useState<string>(initialTheme || 'dark');
-    const [isClient, setIsClient] = useState<boolean>(false);
-
-    useEffect(() => {
-        setIsClient(true);
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme) {
-            setTheme(storedTheme);
-        }
-    }, [initialTheme]);
-
-    const toggleTheme = useCallback(() => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-
-        if (isClient) {
-            localStorage.setItem('theme', newTheme);
-        }
-    }, [theme, isClient]);
-
-    if (!isClient) {
-        return null;
-    }
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext.Provider value={{ theme }}>
             {children}
         </ThemeContext.Provider>
     );
@@ -50,4 +28,4 @@ export const useTheme = (): ThemeContextType => {
         throw new Error('useTheme must be used within a ThemeProvider');
     }
     return context;
-};
+}

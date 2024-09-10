@@ -10,15 +10,16 @@ import {
 import "./tailwind.css";
 
 import { ThemeProvider } from '~/components/ThemeContext/ThemeContext';
-import {json, LinksFunction} from "@remix-run/node";
+import {json, LinksFunction, redirect} from "@remix-run/node";
 import Header from "~/components/Header/Header";
 import {getUserIdFromSession} from "~/server/authData";
 import {getUserById} from "~/server/dataBaseData";
 import {supabase} from "~/components/supabaseClient";
 import {User} from "~/types";
-import {useMatches} from "react-router";
+import { HoneypotProvider } from "remix-utils/honeypot/react";
+import {useLoaderData, useMatches} from "react-router";
 import React from "react";
-// import {honeypot} from "~/server/Honeypot";
+import {themeCookie} from "~/server/themeCookie";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
@@ -28,6 +29,8 @@ export const links: LinksFunction = () => {
 export function Layout({ children }: { children: React.ReactNode }) {
     const matches = useMatches();
     const disableJS = matches.some(match => match.handle?.disableJS);
+    const {data}= useLoaderData()
+    console.log(data)
 
   return (
 
@@ -40,12 +43,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <title> remix</title>
       </head>
       <body>
+      <HoneypotProvider >
       <ThemeProvider>
           <Header/>
       <div>
           {children}
       </div>
       </ThemeProvider>
+      </HoneypotProvider>
+
       <ScrollRestoration />
       {!disableJS && <Scripts />}
       </body>
@@ -83,6 +89,8 @@ export default function App() {
   return <Outlet />;
 }
 
+
+
 export async function  loader({ request }) {
     const userId= await getUserIdFromSession(request);
     const userIdInt = parseInt(userId, 10)
@@ -103,6 +111,24 @@ export async function  loader({ request }) {
         }
         user.image= data.publicUrl
     }
-    return json(user)
+    const cookieHeader = request.headers.get("Cookie");
+    const theme = (await themeCookie.parse(cookieHeader)) || "light";
+
+
+    return json({user,theme})
 }
+
+export async function action({ request }) {
+    const formData = await request.formData();
+    const newTheme = formData.get("theme") as string;
+
+    const cookieHeader = await themeCookie.serialize(newTheme);
+
+    return redirect("./", {
+        headers: {
+            "Set-Cookie": cookieHeader,
+        },
+    });
+}
+
 

@@ -12,6 +12,7 @@ export async function signup(email,image,name, password ) {
         .upload(fileName, image, {
             cacheControl: '3600',
             upsert: false,
+            contentType: image.contentType
         })
     if (uploadError) {
         throw new Error(`Image upload failed: ${uploadError.message}`);

@@ -8,8 +8,7 @@ interface AuthButtonProps {
     className: string;
 }
 export function AuthButton ({className} : AuthButtonProps){
-    const user =useLoaderData()
-
+    const {user} =useLoaderData()
     const theme =useTheme()
 
  return <main>
