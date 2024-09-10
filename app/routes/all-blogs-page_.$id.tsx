@@ -48,4 +48,3 @@ export const meta: MetaFunction = (meta) => {
     ];
 };
 
-export const handle = { disableJS: true };

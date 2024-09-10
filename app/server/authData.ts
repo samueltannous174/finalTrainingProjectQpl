@@ -7,7 +7,6 @@ import {prisma} from "~/server/dataBaseData";
 export async function signup(email,image,name, password ) {
     const fileName = `${name}-image`;
 
-
     const { error: uploadError } = await supabase.storage
         .from('UsersImages')
         .upload(fileName, image, {
@@ -21,7 +20,11 @@ export async function signup(email,image,name, password ) {
     const { data , error: signUpError } = await supabase.auth.signUp({
         email,
         password,
-    });
+    })
+    if (signUpError) {
+        throw new Error(signUpError.message);
+    }
+
     const userIdInt = parseInt(data.user?.id, 10);
 
     await prisma.user.create({
@@ -32,9 +35,7 @@ export async function signup(email,image,name, password ) {
         }
     });
 
-    if (signUpError) {
-        throw new Error(signUpError.message);
-    }
+
 
     return createUserSession(data.user?.id, '/');
 }
@@ -73,7 +74,6 @@ async function createUserSession(userId, redirectPath) {
         },
     });
 }
-
 
 
 export async function getUserIdFromSession(request) {

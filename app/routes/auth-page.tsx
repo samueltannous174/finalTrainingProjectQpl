@@ -28,14 +28,15 @@ export async function action({ request }) {
 
     try {
         if (authMode === 'login') {
-            return login(email, password)
+            return await login(email, password)
 
 
         } else {
-            return   signup(email,image,name,password)
+           return  await signup(email,image,name,password)
         }
     } catch (error) {
-        console.error(error);
+        console.log("hello")
+        console.error(error.message);
         return error.message
     }
 }

@@ -14,6 +14,9 @@ import {json, LinksFunction} from "@remix-run/node";
 import Header from "~/components/Header/Header";
 import {getUserIdFromSession} from "~/server/authData";
 import {getUserById} from "~/server/dataBaseData";
+import {supabase} from "~/components/supabaseClient";
+import {User} from "~/types";
+import {useMatches} from "react-router";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
@@ -21,9 +24,9 @@ export const links: LinksFunction = () => {
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
-    // const matches = useMatches();
-    // console.log(matches)
-    // const disableJS = matches.some(match => match.handle?.disableJS);
+    const matches = useMatches();
+    console.log(matches)
+    const disableJS = matches.some(match => match.handle?.disableJS);
 
   return (
 
@@ -43,7 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </div>
       </ThemeProvider>
       <ScrollRestoration />
-        <Scripts />
+      {!disableJS && <Scripts />}
       </body>
     </html>
   );
@@ -61,7 +64,7 @@ export function ErrorBoundary() {
                 </h1>
                 <p>{error.data}</p>
             </div>
-        );
+        )
     } else if (error instanceof Error) {
         return (
             <div className="bg-blue-200 p-8 rounded-lg shadow-lg   text-center">
@@ -83,7 +86,24 @@ export async function  loader({ request }) {
     const userId= await getUserIdFromSession(request);
     const userIdInt = parseInt(userId, 10)
 
-    const user = await getUserById(userIdInt)
+    const user = await getUserById(userIdInt) as User
+    console.log(user)
+    if (user){
+        const fileName = `${user.name}-image`;
+
+        const { data, error } = supabase.storage
+            .from('UsersImages')
+            .getPublicUrl(fileName);
+
+        if (error) {
+            console.error(`Error fetching public URL: ${error.message}`);
+        } else {
+            const imageUrl = data.publicUrl;
+            console.log(`Public Image URL: ${imageUrl}`);
+        }
+        user.image= data.publicUrl
+    }
+
     return json(user)
 }
 

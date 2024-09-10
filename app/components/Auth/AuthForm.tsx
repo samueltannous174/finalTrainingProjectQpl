@@ -14,6 +14,7 @@ function AuthForm() {
     const [searchParams] = useSearchParams();
     const navigation = useNavigation();
     const validation = useActionData();
+    console.log(validation)
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
     const {
@@ -41,7 +42,7 @@ function AuthForm() {
 
     return (
         <div className={containerClassName}>
-            {validation && <p className="text-[11px] text-red-600">{validation.error}</p>}
+            {validation && <p className="text-[11px] text-red-600">{validation}</p>}
             <h2 className="text-2xl font-bold text-center mb-6 text-white">
                 {authMode === 'login' ? 'Sign in to your account' : 'Create a new account'}
             </h2>
