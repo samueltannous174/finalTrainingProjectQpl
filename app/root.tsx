@@ -81,7 +81,7 @@ export default function App() {
 
 export async function  loader({ request }) {
     const userId= await getUserIdFromSession(request);
-    const userIdInt = parseInt(userId, 10);  
+    const userIdInt = parseInt(userId, 10)
 
     const user = await getUserById(userIdInt)
     return json(user)

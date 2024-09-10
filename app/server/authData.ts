@@ -22,9 +22,11 @@ export async function signup(email,image,name, password ) {
         email,
         password,
     });
+    const userIdInt = parseInt(data.user?.id, 10);
+
     await prisma.user.create({
         data: {
-            id: data.user?.id,
+            id: userIdInt,
             email: email,
             name: name
         }
@@ -84,6 +86,7 @@ export async function getUserIdFromSession(request) {
     if (!userId) {
         return null;
     }
+
     else{
         return userId
     }

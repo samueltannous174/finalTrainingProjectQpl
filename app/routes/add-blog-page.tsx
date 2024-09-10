@@ -32,9 +32,10 @@ export async function loader({request}){
 export async function action({ request }) {
     const formData = await request.formData();
     const userId= await requireUserSession(request)
+    const userIdInt = parseInt(userId, 10);
     const blogData = Object.fromEntries(formData) as Blog;
     console.log(blogData)
-    blogData.authorId=userId
+    blogData.authorId=userIdInt
     try {
         validate(blogData)
     } catch (errors) {

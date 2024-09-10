@@ -1,9 +1,9 @@
 import {useLoaderData} from "react-router";
 import BlogPage from "~/components/blogPage/BlogPage";
 import {addComment, getBlogsById, getUserById} from "~/server/dataBaseData";
-// import {getUserIdFromSession} from "~/server/authData";
 import {json, MetaFunction} from "@remix-run/node";
 import {useTheme} from "~/components/ThemeContext/ThemeContext";
+import {getUserIdFromSession} from "~/server/authData";
 
 
 export default function AllBlogsPageId() {
@@ -20,7 +20,9 @@ export async function loader({ params, request }) {
     const blog = await getBlogsById(params.id);
     const currentLoggedUserId = await getUserIdFromSession(request);
         if (currentLoggedUserId){
-            const user = await getUserById(currentLoggedUserId);
+            const userIdInt = parseInt(currentLoggedUserId, 10);
+            const user = await getUserById(userIdInt);
+
             return json({ blog, user });
         }
     return json({ blog });
