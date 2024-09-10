@@ -14,7 +14,6 @@ function AuthForm() {
     const [searchParams] = useSearchParams();
     const navigation = useNavigation();
     const validation = useActionData();
-    console.log(validation)
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
     const {
@@ -88,7 +87,6 @@ function AuthForm() {
                 </div>
 
                 {authMode === 'signup' && (<SignUpAdditions password={password} onConfirmPasswordErrorChange={setConfirmPasswordError}/>)}
-
                 <div className="flex justify-between items-center">
                     <button
                         type="submit"

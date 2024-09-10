@@ -16,6 +16,8 @@ export default function AllBlogsPageId() {
         </main>
     );
 }
+
+
 export async function loader({ params, request }) {
     const blog = await getBlogsById(params.id);
     const currentLoggedUserId = await getUserIdFromSession(request);

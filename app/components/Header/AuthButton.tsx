@@ -9,6 +9,7 @@ interface AuthButtonProps {
 }
 export function AuthButton ({className} : AuthButtonProps){
     const user =useLoaderData()
+
     const theme =useTheme()
 
  return <main>

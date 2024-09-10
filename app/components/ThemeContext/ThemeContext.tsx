@@ -21,9 +21,6 @@ export const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) =>
         const storedTheme = localStorage.getItem('theme');
         if (storedTheme) {
             setTheme(storedTheme);
-        } else if (!initialTheme) {
-            const osTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            setTheme(osTheme);
         }
     }, [initialTheme]);
 

@@ -34,7 +34,6 @@ export async function action({ request }) {
     const userId= await requireUserSession(request)
     const userIdInt = parseInt(userId, 10);
     const blogData = Object.fromEntries(formData) as Blog;
-    console.log(blogData)
     blogData.authorId=userIdInt
     try {
         validate(blogData)

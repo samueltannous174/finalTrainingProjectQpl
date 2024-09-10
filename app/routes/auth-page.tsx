@@ -35,7 +35,6 @@ export async function action({ request }) {
            return  await signup(email,image,name,password)
         }
     } catch (error) {
-        console.log("hello")
         console.error(error.message);
         return error.message
     }

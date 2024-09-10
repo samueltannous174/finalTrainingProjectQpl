@@ -3,7 +3,7 @@ import {NavigationItems} from "~/components/Header/NavigationItems";
 import {AuthButton} from "~/components/Header/AuthButton";
 
 export default function HeaderItems() {
-    const { theme } = useTheme();
+    const { theme } = useTheme()
 
     return (
         <>
@@ -23,4 +23,3 @@ export default function HeaderItems() {
         </>
     );
 }
-

@@ -17,6 +17,8 @@ import {getUserById} from "~/server/dataBaseData";
 import {supabase} from "~/components/supabaseClient";
 import {User} from "~/types";
 import {useMatches} from "react-router";
+import React from "react";
+// import {honeypot} from "~/server/Honeypot";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
@@ -25,7 +27,6 @@ export const links: LinksFunction = () => {
 
 export function Layout({ children }: { children: React.ReactNode }) {
     const matches = useMatches();
-    console.log(matches)
     const disableJS = matches.some(match => match.handle?.disableJS);
 
   return (
@@ -87,7 +88,6 @@ export async function  loader({ request }) {
     const userIdInt = parseInt(userId, 10)
 
     const user = await getUserById(userIdInt) as User
-    console.log(user)
     if (user){
         const fileName = `${user.name}-image`;
 
@@ -103,7 +103,6 @@ export async function  loader({ request }) {
         }
         user.image= data.publicUrl
     }
-
     return json(user)
 }
 

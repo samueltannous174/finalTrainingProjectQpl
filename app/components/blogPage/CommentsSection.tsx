@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 export default function CommentsSection() {
     const data=useLoaderData()
     const user=data.user
-    console.log(user)
+    console.log("data"+data.user)
     const [createdAt] = useState(format(new Date(), "yyyy-MM-dd' T ' HH:mm:ss"));
 
 
@@ -49,8 +49,7 @@ export default function CommentsSection() {
                     <div className="w-full flex justify-end px-3 my-3">
                         <button  className="px-10 py-5 rounded-md text-white text-sm bg-indigo-500 cursor-pointer"
                                  disabled={commentContent=== ""}
-                                 onClick={handleClearingContent}
-                        >
+                                 onClick={handleClearingContent}>
                             Submit
                         </button>
                     </div>
