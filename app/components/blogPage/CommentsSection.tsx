@@ -1,21 +1,21 @@
 import type { MetaFunction } from "@remix-run/node";
 import {Form} from "@remix-run/react";
-import  { useState} from "react";
+import React, { useState} from "react";
 import {useLoaderData} from "react-router";
 import {format} from "date-fns";
 import CommentComponent from "~/components/blogPage/CommentComponent";
+import { HoneypotInputs } from "remix-utils/honeypot/react";
 
 export const meta: MetaFunction = () => {
     return [
         { title: "Comments" },
         { name: "description", content: "Discussion section for comments" },
     ];
-};
+}
 
 export default function CommentsSection() {
     const data=useLoaderData()
     const user=data.user
-    console.log("data"+data.user)
     const [createdAt] = useState(format(new Date(), "yyyy-MM-dd' T ' HH:mm:ss"));
 
 
@@ -47,12 +47,14 @@ export default function CommentsSection() {
                 />
 
                     <div className="w-full flex justify-end px-3 my-3">
+                        <HoneypotInputs label="Please leave this field blank" />
                         <button  className="px-10 py-5 rounded-md text-white text-sm bg-indigo-500 cursor-pointer"
                                  disabled={commentContent=== ""}
                                  onClick={handleClearingContent}>
                             Submit
                         </button>
                     </div>
+
                     <input
                         value={data.blog.id}
                         name="blogId"

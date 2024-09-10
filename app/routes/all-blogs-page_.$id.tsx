@@ -4,6 +4,8 @@ import {addComment, getBlogsById, getUserById} from "~/server/dataBaseData";
 import {json, MetaFunction} from "@remix-run/node";
 import {useTheme} from "~/components/ThemeContext/ThemeContext";
 import {getUserIdFromSession} from "~/server/authData";
+import {honeypot} from "~/server/Honeypot";
+import { SpamError } from "remix-utils/honeypot/server";
 
 
 export default function AllBlogsPageId() {
@@ -33,6 +35,13 @@ export async function loader({ params, request }) {
 
 export const action = async ({ request }: { request: Request }) => {
     const commentFormData = await request.formData();
+    try {
+        honeypot.check(commentFormData);
+    } catch (error) {
+        if (error instanceof SpamError) {
+            console.log("spam")
+        }
+        }
     const commentsData = Object.fromEntries(commentFormData)
     const updatedComment = {
         ...commentsData,

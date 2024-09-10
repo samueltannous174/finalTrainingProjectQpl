@@ -20,6 +20,7 @@ import { HoneypotProvider } from "remix-utils/honeypot/react";
 import {useLoaderData, useMatches} from "react-router";
 import React from "react";
 import {themeCookie} from "~/server/themeCookie";
+import {honeypot} from "~/server/Honeypot";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
@@ -29,8 +30,7 @@ export const links: LinksFunction = () => {
 export function Layout({ children }: { children: React.ReactNode }) {
     const matches = useMatches();
     const disableJS = matches.some(match => match.handle?.disableJS);
-    const {data}= useLoaderData()
-    console.log(data)
+    const {honeypotInputProps}= useLoaderData()
 
   return (
 
@@ -43,7 +43,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <title> remix</title>
       </head>
       <body>
-      <HoneypotProvider >
+      <HoneypotProvider {...honeypotInputProps}>
       <ThemeProvider>
           <Header/>
       <div>
@@ -115,7 +115,7 @@ export async function  loader({ request }) {
     const theme = (await themeCookie.parse(cookieHeader)) || "light";
 
 
-    return json({user,theme})
+    return json({user,theme,  honeypotInputProps: honeypot.getInputProps()})
 }
 
 export async function action({ request }) {
