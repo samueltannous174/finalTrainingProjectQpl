@@ -1,5 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
-import {Form} from "@remix-run/react";
+import {Form, useNavigation} from "@remix-run/react";
 import React, { useState} from "react";
 import {useLoaderData} from "react-router";
 import {format} from "date-fns";
@@ -17,11 +17,11 @@ export default function CommentsSection() {
     const data=useLoaderData()
     const user=data.user
     const [createdAt] = useState(format(new Date(), "yyyy-MM-dd' T ' HH:mm:ss"));
-
+    const navigation =useNavigation()
+    const isSubmitting = navigation.state !== 'idle';
 
     const [commentContent, setCommentContent] = useState("");
     const handleClearingContent= () => {
-
         setTimeout(() => {
             setCommentContent("");
         }, 2000);
@@ -31,7 +31,6 @@ export default function CommentsSection() {
         setCommentContent(event.target.value);
     };
     return (
-
         <div  className="  rounded-lg border p-3 m-10 w-[80%] bg-gray-800">
             <h3 className="font-semibold p-1 text-white">Discussion</h3>
             <div className="w-full px-3 mb-2 mt-6">
@@ -49,7 +48,7 @@ export default function CommentsSection() {
                     <div className="w-full flex justify-end px-3 my-3">
                         <HoneypotInputs label="Please leave this field blank" />
                         <button  className="px-10 py-5 rounded-md text-white text-sm bg-indigo-500 cursor-pointer"
-                                 disabled={commentContent=== ""}
+                                 disabled={isSubmitting}
                                  onClick={handleClearingContent}>
                             Submit
                         </button>
