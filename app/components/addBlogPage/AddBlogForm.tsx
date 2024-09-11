@@ -7,7 +7,7 @@ type Props={
 
 export default function AddBlogForm({content, setIsAddFormClicked}:Props ) {
     const navigation = useNavigation();
-    const isSubmitting = navigation.state !== 'idle';  // when submitting and navigation
+    const isSubmitting = navigation.state !== 'idle';
     const errors=useActionData()
     return (
         <>          <Form method="post" className=" flex flex-col bg-sky-900 items-center space-y-1 justify-center mt-3  "     onClick={() => setIsAddFormClicked(prev => !prev)}>

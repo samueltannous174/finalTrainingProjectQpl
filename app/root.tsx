@@ -10,7 +10,7 @@ import {
 import "./tailwind.css";
 
 import { ThemeProvider } from '~/components/ThemeContext/ThemeContext';
-import {json, LinksFunction, redirect} from "@remix-run/node";
+import {json, LinksFunction} from "@remix-run/node";
 import Header from "~/components/Header/Header";
 import {getUserIdFromSession} from "~/server/authData";
 import {getUserById} from "~/server/dataBaseData";
@@ -123,12 +123,12 @@ export async function action({ request }) {
     const newTheme = formData.get("theme") as string;
 
     const cookieHeader = await themeCookie.serialize(newTheme);
-
-    return redirect("./", {
-        headers: {
-            "Set-Cookie": cookieHeader,
-        },
-    });
+    return json(
+        { success: true },
+        {
+            headers: {
+                "Set-Cookie": cookieHeader,
+            },
+        }
+    );
 }
-
-

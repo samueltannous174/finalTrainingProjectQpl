@@ -6,6 +6,7 @@ import { remixDevTools } from "remix-development-tools";
 
 export default defineConfig({
   plugins: [
+    remixDevTools(),
     remix({
       future: {
         v3_fetcherPersist: true,
@@ -17,7 +18,6 @@ export default defineConfig({
 
     tsconfigPaths(),
   ],
-  plugins: [remixDevTools(), remix(), tsconfigPaths()],
 
   ssr: {
     noExternal: ["remix-utils"],

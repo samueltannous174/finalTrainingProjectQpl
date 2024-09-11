@@ -5,6 +5,5 @@ import {destroyUserSession} from "~/server/authData";
         if (request.method !== 'POST') {
             throw json({ message: 'Invalid request method'}, { status: 400 });
         }
-
         return destroyUserSession(request);
     }

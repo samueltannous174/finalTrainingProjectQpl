@@ -25,7 +25,6 @@ export function AuthButton ({className} : AuthButtonProps){
              <Form
                  method="post"
                  action="/logout"
-                 id="logout-form"
              >
                  <button className={`self-center px-6 py-1 font-bold rounded-md select-none ${theme === "dark" ? "text-white bg-cyan-950 hover:bg-purple-200" : "text-gray-900 bg-gray-300 hover:bg-gray-400"}`}>
                      Sign Out
