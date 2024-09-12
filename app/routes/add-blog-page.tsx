@@ -32,9 +32,8 @@ export async function loader({request}){
 export async function action({ request }) {
     const formData = await request.formData();
     const userId= await requireUserSession(request)
-    const userIdInt = parseInt(userId, 10);
     const blogData = Object.fromEntries(formData) as Blog;
-    blogData.authorId=userIdInt
+    blogData.authorId=userId
     try {
         validate(blogData)
     } catch (errors) {
@@ -49,4 +48,4 @@ export const meta: MetaFunction = () => {
         { title: "Add New Blog " },
         { name: "description", content: "add your custom blog for free"}
     ];
-};
+}

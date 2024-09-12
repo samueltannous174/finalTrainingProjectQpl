@@ -15,6 +15,7 @@ function AuthForm() {
     const navigation = useNavigation();
     const validation = useActionData();
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [ setImage] = useState(null);
 
     const {
         email,
@@ -25,7 +26,10 @@ function AuthForm() {
         handleEmailBlur,
         handlePasswordChange,
         handlePasswordBlur,
-    } = useAuthForm();
+    } = useAuthForm()
+
+
+
 
     const authMode = searchParams.get('mode') || 'login';
     const submitBtnCaption = authMode === 'login' ? 'Login' : 'Create User';
@@ -38,6 +42,7 @@ function AuthForm() {
     const containerClassName = `space mt-[40px] space-y-10 mx-auto bg-cyan-950 p-8 rounded-lg shadow-lg  ${
         authMode === 'signup' ? 'w-[70%] md:w-[50%] xl:w-[25%]' : ''
     }`;
+
 
     return (
         <div className={containerClassName}>
@@ -86,7 +91,7 @@ function AuthForm() {
                     {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
                 </div>
 
-                {authMode === 'signup' && (<SignUpAdditions password={password} onConfirmPasswordErrorChange={setConfirmPasswordError}/>)}
+                {authMode === 'signup' && (<SignUpAdditions password={password} onConfirmPasswordErrorChange={setConfirmPasswordError} setImage={setImage}/>)}
                 <div className="flex justify-between items-center">
                     <button
                         type="submit"
@@ -110,5 +115,6 @@ function AuthForm() {
         </div>
     );
 }
+
 
 export default AuthForm;

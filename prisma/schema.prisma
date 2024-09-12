@@ -13,13 +13,13 @@ model Blog {
   title     String
   paragraph String
   image     String
-  authorId  Int
+  authorId  String
   author    User      @relation(fields: [authorId], references: [id])
   comments  Comment[]
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
+  id       String    @id @default(cuid())
   email    String    @unique
   name     String
   blogs    Blog[]
@@ -32,6 +32,6 @@ model Comment {
   createdAt DateTime @default(now())
   blogId    Int
   blog      Blog     @relation(fields: [blogId], references: [id])
-  authorId  Int?
+  authorId  String?
   author    User?    @relation(fields: [authorId], references: [id])
 }

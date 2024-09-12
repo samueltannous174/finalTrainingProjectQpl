@@ -20,19 +20,19 @@ function BlogPage({ blogData, content  }: BlogPageProps) {
         <main className="box-border mx-auto flex flex-col min-h-screen items-start">
             <section className="flex flex-col w-[100%] p-4 md:p-0  md:mx-0">
                 {mode === 'add' ? (
-                    <p className={`text-lg text-black-400 leading-relaxed mb-4 break-words flex-wrap max-w-[298px] lg:max-w-[398px] xl:max-w-[598px] text-[13px] md:max-w-[298px]`}>
+                    <div className={`text-lg text-black-400 leading-relaxed mb-4 break-words flex-wrap max-w-[298px] lg:max-w-[398px] xl:max-w-[598px] text-[13px] md:max-w-[298px]`}>
                         <ClientOnly>
                                 {() =><HtmlRenderer htmlString={content}/>}
                         </ClientOnly>
-                    </p>
+                    </div>
                 ) : (
                     <>
-                    <p className={`text-lg leading-relaxed mb-4 break-words flex-wrap  p-0 w-[70%] lg:w-[50%] text-[13px] self-center mt-[80px]  `}>
+                    <div className={`text-lg leading-relaxed mb-4 break-words flex-wrap  p-0 w-[70%] lg:w-[50%] text-[13px] self-center mt-[80px]  `}>
                         <ClientOnly>
                             {() => !(blogData) || blogData.paragraph && <HtmlRenderer htmlString={blogData.paragraph}/>}
                         </ClientOnly>
 
-                    </p>
+                    </div>
                         <div className="flex justify-center mt-[50px]">
                             <CommentsSection />
                         </div>

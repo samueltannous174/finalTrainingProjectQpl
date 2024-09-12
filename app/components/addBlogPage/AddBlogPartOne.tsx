@@ -4,7 +4,7 @@ import {useMemo, useState} from "react";
 
 interface Props {
     content: string;
-    setContent: (content: string) => void;
+        setContent: (content: string) => void;
 }
 
 export function AddBlogPartOne({ content, setContent }: Props) {

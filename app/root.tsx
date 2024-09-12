@@ -14,17 +14,19 @@ import {json, LinksFunction} from "@remix-run/node";
 import Header from "~/components/Header/Header";
 import {getUserIdFromSession} from "~/server/authData";
 import {getUserById} from "~/server/dataBaseData";
-import {supabase} from "~/components/supabaseClient";
 import {User} from "~/types";
 import { HoneypotProvider } from "remix-utils/honeypot/react";
 import {useLoaderData, useMatches} from "react-router";
 import React from "react";
 import {themeCookie} from "~/server/themeCookie";
 import {honeypot} from "~/server/Honeypot";
+import {getUserImage} from "~/components/getUserImage";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: "/app/index.css" }];
 };
+
+
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -43,6 +45,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <title> remix</title>
       </head>
       <body>
+
       <HoneypotProvider {...honeypotInputProps}>
       <ThemeProvider>
           <Header/>
@@ -62,6 +65,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export function ErrorBoundary() {
         const error = useRouteError();
+
 
     if (isRouteErrorResponse(error)) {
         return (
@@ -93,23 +97,11 @@ export default function App() {
 
 export async function  loader({ request }) {
     const userId= await getUserIdFromSession(request);
-    const userIdInt = parseInt(userId, 10)
-
-    const user = await getUserById(userIdInt) as User
+    console.log(userId)
+    const user = await getUserById(userId) as User
     if (user){
-        const fileName = `${user.name}-image`;
 
-        const { data, error } = supabase.storage
-            .from('UsersImages')
-            .getPublicUrl(fileName);
-
-        if (error) {
-            console.error(`Error fetching public URL: ${error.message}`);
-        } else {
-            const imageUrl = data.publicUrl;
-            console.log(`Public Image URL: ${imageUrl}`);
-        }
-        user.image= data.publicUrl
+        user.image= getUserImage(user)
     }
     const cookieHeader = request.headers.get("Cookie");
     const theme = (await themeCookie.parse(cookieHeader)) || "light";

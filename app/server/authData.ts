@@ -4,20 +4,7 @@ import {supabase} from "~/components/supabaseClient";
 import {prisma} from "~/server/dataBaseData";
 
 
-export async function signup(email,image,name, password ) {
-    const fileName = `${name}-image`;
-
-    const { error: uploadError } = await supabase.storage
-        .from('UsersImages')
-        .upload(fileName, image, {
-            cacheControl: '3600',
-            upsert: false,
-            contentType: image.contentType
-        })
-    if (uploadError) {
-        throw new Error(`Image upload failed: ${uploadError.message}`);
-    }
-
+export async function signup(email,name, password ) {
     const { data , error: signUpError } = await supabase.auth.signUp({
         email,
         password,
@@ -26,19 +13,27 @@ export async function signup(email,image,name, password ) {
         throw new Error(signUpError.message);
     }
 
-    const userIdInt = parseInt(data.user?.id, 10);
+    console.log(data)
+    console.log(data.user?.id)
 
-    await prisma.user.create({
-        data: {
-            id: userIdInt,
-            email: email,
-            name: name
+    if (data.user?.id){
+        try {
+            await prisma.user.create({
+                data: {
+                    id: data.user?.id,
+                    email: email,
+                    name: name
+                }
+            })
         }
-    });
+        catch (error){
+            throw new Error(error   );
+        }
 
-
+    }
 
     return createUserSession(data.user?.id, '/');
+
 }
 
 export async function login( email, password ) {
@@ -58,12 +53,12 @@ const SESSION_SECRET = process.env.SESSION_SECRET;
 
 const sessionStorage = createCookieSessionStorage({
     cookie: {
-        secure: process.env.NODE_ENV === 'production',
+        secure: process.env.NODE_ENV === 'production', //This ensures that cookies are only transmitted over secure HTTPS connections when the app is in production. In development, it allows cookies to be transmitted over HTTP.
         secrets: [SESSION_SECRET],
-        sameSite: 'lax',
-        maxAge: 30 * 24 * 60 * 60,
-        httpOnly: true,
-    },
+        sameSite: 'lax', //This setting helps protect against CSRF (Cross-Site Request Forgery) by limiting how cookies are sent with cross-site requests. 'lax' is a good balance between security and usability.
+        maxAge: 30 * 24 * 60 * 60, //expire
+        httpOnly: true, //This prevents the cookie from being accessed by client-side JavaScript, increasing security by mitigating XSS (Cross-Site Scripting) attacks.
+    }
 });
 async function createUserSession(userId, redirectPath) {
     const session = await sessionStorage.getSession();
@@ -72,7 +67,7 @@ async function createUserSession(userId, redirectPath) {
         headers: {
             'Set-Cookie': await sessionStorage.commitSession(session),
         },
-    });
+    })
 }
 
 
@@ -113,3 +108,7 @@ export async function requireUserSession(request) {
         return userId
     }
 }
+
+
+
+//make the session and save the id in it after it will be added to the request.header

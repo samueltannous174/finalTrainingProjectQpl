@@ -22,17 +22,16 @@ export async function action({ request }) {
     const authMode = searchParams.get('mode') || 'login';
     const formData = await request.formData();
     const email = formData.get('email');
+    console.log(email)
     const password = formData.get('password');
-    const image = formData.get('image');
+    console.log(password)
     const name = formData.get('name');
 
     try {
         if (authMode === 'login') {
             return await login(email, password)
-
-
         } else {
-           return  await signup(email,image,name,password)
+           return  await signup(email,name,password)
         }
     } catch (error) {
         console.error(error.message);

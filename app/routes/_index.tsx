@@ -8,8 +8,6 @@
  import {useTheme} from "~/components/ThemeContext/ThemeContext";
 
 
-
-
     export default function Index() {
         const { theme } = useTheme();
         return (

@@ -5,6 +5,7 @@ export function useAuthForm() {
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [name, setName] = useState("");
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -32,15 +33,21 @@ export function useAuthForm() {
             setPasswordError('');
         }
     };
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
+
 
     return {
         email,
         password,
+        name,
         emailError,
         passwordError,
         handleEmailChange,
         handleEmailBlur,
         handlePasswordChange,
         handlePasswordBlur,
+        handleNameChange
     };
 }
